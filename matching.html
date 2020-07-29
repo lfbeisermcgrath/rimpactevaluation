@@ -1,0 +1,1688 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 7 Matching | Impact Evaluation in Practice</title>
+  <meta name="description" content="Solutions for Impact Evaluation in Practice (2nd Edition)." />
+  <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 7 Matching | Impact Evaluation in Practice" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="Solutions for Impact Evaluation in Practice (2nd Edition)." />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 7 Matching | Impact Evaluation in Practice" />
+  
+  <meta name="twitter:description" content="Solutions for Impact Evaluation in Practice (2nd Edition)." />
+  
+
+<meta name="author" content="Liam F. Beiser-McGrath" />
+<meta name="author" content="Lecturer (Assistant Professor) in Politics, Royal Holloway, University of London" />
+<meta name="author" content="www.liambeisermcgrath.com" />
+<meta name="author" content="liam@liambeisermcgrath.com" />
+
+
+<meta name="date" content="2020-07-29" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="difference-in-differences.html"/>
+<link rel="next" href="design-and-sampling.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+
+
+<style type="text/css">
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Impact Evaluation in Practice Solutions</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preamble</a></li>
+<li class="chapter" data-level="" data-path="about-the-author.html"><a href="about-the-author.html"><i class="fa fa-check"></i>About the Author</a></li>
+<li class="chapter" data-level="1" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>1</b> Introduction</a><ul>
+<li class="chapter" data-level="1.1" data-path="intro.html"><a href="intro.html#variable-definitions"><i class="fa fa-check"></i><b>1.1</b> Variable Definitions</a><ul>
+<li class="chapter" data-level="1.1.1" data-path="intro.html"><a href="intro.html#outcome-variable"><i class="fa fa-check"></i><b>1.1.1</b> Outcome Variable</a></li>
+<li class="chapter" data-level="1.1.2" data-path="intro.html"><a href="intro.html#control-variables"><i class="fa fa-check"></i><b>1.1.2</b> Control Variables</a></li>
+<li class="chapter" data-level="1.1.3" data-path="intro.html"><a href="intro.html#other-variables"><i class="fa fa-check"></i><b>1.1.3</b> Other Variables</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="causal-inference-and-counterfactuals.html"><a href="causal-inference-and-counterfactuals.html"><i class="fa fa-check"></i><b>2</b> Causal Inference and Counterfactuals</a><ul>
+<li class="chapter" data-level="2.1" data-path="causal-inference-and-counterfactuals.html"><a href="causal-inference-and-counterfactuals.html#before-after-designs"><i class="fa fa-check"></i><b>2.1</b> Before-After Designs</a></li>
+<li class="chapter" data-level="2.2" data-path="causal-inference-and-counterfactuals.html"><a href="causal-inference-and-counterfactuals.html#enrolled-vs.-non-enrolled"><i class="fa fa-check"></i><b>2.2</b> Enrolled vs. Non-Enrolled</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="randomised-assignment.html"><a href="randomised-assignment.html"><i class="fa fa-check"></i><b>3</b> Randomised Assignment</a></li>
+<li class="chapter" data-level="4" data-path="instrumental-variables.html"><a href="instrumental-variables.html"><i class="fa fa-check"></i><b>4</b> Instrumental Variables</a></li>
+<li class="chapter" data-level="5" data-path="regression-discontinuity-designs.html"><a href="regression-discontinuity-designs.html"><i class="fa fa-check"></i><b>5</b> Regression Discontinuity Designs</a></li>
+<li class="chapter" data-level="6" data-path="difference-in-differences.html"><a href="difference-in-differences.html"><i class="fa fa-check"></i><b>6</b> Difference-in-Differences</a></li>
+<li class="chapter" data-level="7" data-path="matching.html"><a href="matching.html"><i class="fa fa-check"></i><b>7</b> Matching</a></li>
+<li class="chapter" data-level="8" data-path="design-and-sampling.html"><a href="design-and-sampling.html"><i class="fa fa-check"></i><b>8</b> Design and Sampling</a><ul>
+<li class="chapter" data-level="8.1" data-path="design-and-sampling.html"><a href="design-and-sampling.html#power-calculations-with-clusters"><i class="fa fa-check"></i><b>8.1</b> Power Calculations with Clusters</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="chapter" data-level="9" data-path="session-info.html"><a href="session-info.html"><i class="fa fa-check"></i><b>9</b> Session Info</a></li>
+<li class="divider"></li>
+<li><a href="www.liambeisermcgrath.com" target="blank">www.liambeisermcgrath.com</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Impact Evaluation in Practice</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="matching" class="section level1">
+<h1><span class="header-section-number">Chapter 7</span> Matching</h1>
+<!-- ```{r} -->
+<!-- library(broom) -->
+<!-- library(estimatr) -->
+<!-- library(haven) -->
+<!-- library(kableExtra) -->
+<!-- library(MatchIt) -->
+<!-- library(modelsummary) -->
+<!-- library(texreg) -->
+<!-- library(tidyverse) -->
+<!-- df <- read_dta("./data/evaluation.dta") -->
+<!-- # need to set seed for reproducible results -->
+<!-- set.seed(12345) -->
+<!-- ``` -->
+<p>Having learned about matching techniques, you may wonder whether you could use them to estimate the impact of the Health Insurance Subsidy Program (HISP). You decide to use some matching techniques to select a group of nonenrolled households that look similar to the enrolled households based on baseline observed characteristics.</p>
+<p>To do so, you will conduct Propensity Score Matching (PSM). The Propensity Score is the probability that a household will enroll in the program based on the observed values of characteristics (the explanatory variables), such as the age of the household head and of the spouse, their level of education, whether the head of the household is a female, whether the household is indigenous, and so on.</p>
+<p>Before we start we need to put the data in <em>wide</em> format. Currently a household covers multiple rows in our dataset, as variables are measured pre- and post-enrollment. As we want to match households, we instead each row to be a unique household. Therefore, we have to widen the dataset, by creating separate columns for household characteristics in each time period.</p>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="matching.html#cb25-1"></a>df_w &lt;-<span class="st"> </span>df <span class="op">%&gt;%</span></span>
+<span id="cb25-2"><a href="matching.html#cb25-2"></a><span class="st">  </span><span class="kw">pivot_wider</span>(<span class="dt">names_from =</span> round, <span class="co"># variable that determines new columns</span></span>
+<span id="cb25-3"><a href="matching.html#cb25-3"></a>              <span class="co"># variables that should be made &quot;wide&quot;</span></span>
+<span id="cb25-4"><a href="matching.html#cb25-4"></a>              <span class="dt">values_from =</span> <span class="kw">c</span>(health_expenditures, </span>
+<span id="cb25-5"><a href="matching.html#cb25-5"></a>                              poverty_index, age_hh, age_sp,</span>
+<span id="cb25-6"><a href="matching.html#cb25-6"></a>                              educ_hh, educ_sp, female_hh,</span>
+<span id="cb25-7"><a href="matching.html#cb25-7"></a>                              indigenous, hhsize, dirtfloor,</span>
+<span id="cb25-8"><a href="matching.html#cb25-8"></a>                              bathroom, land, hospital_distance,</span>
+<span id="cb25-9"><a href="matching.html#cb25-9"></a>                              hospital)) <span class="op">%&gt;%</span></span>
+<span id="cb25-10"><a href="matching.html#cb25-10"></a><span class="st">  </span><span class="co"># this is a hack for now as there is one household that has missing values</span></span>
+<span id="cb25-11"><a href="matching.html#cb25-11"></a><span class="st">  </span><span class="co"># and missing values are not allowed when using matchit</span></span>
+<span id="cb25-12"><a href="matching.html#cb25-12"></a><span class="st">  </span><span class="kw">filter</span>(<span class="op">!</span><span class="kw">is.na</span>(health_expenditures_<span class="dv">0</span>)) </span></code></pre></div>
+<p>We will carry out matching using two scenarios. In the first scenario, there is a large set of variables to predict enrollment, including socioeconomic household characteristics. In the second scenario, there is little information to predict enrollment (only education and age of the household head).</p>
+<p><strong>Estimate the Propensity Score</strong></p>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="matching.html#cb26-1"></a><span class="co"># We&#39;ll conduct propensity score estimation and matching at the same</span></span>
+<span id="cb26-2"><a href="matching.html#cb26-2"></a><span class="co"># time, as the matchit function does this for us</span></span>
+<span id="cb26-3"><a href="matching.html#cb26-3"></a>psm_r &lt;-<span class="st"> </span><span class="kw">matchit</span>(enrolled <span class="op">~</span><span class="st"> </span>age_hh_<span class="dv">0</span> <span class="op">+</span><span class="st"> </span>educ_hh_<span class="dv">0</span>,</span>
+<span id="cb26-4"><a href="matching.html#cb26-4"></a>                 <span class="dt">data =</span> df_w <span class="op">%&gt;%</span><span class="st"> </span>dplyr<span class="op">::</span><span class="kw">select</span>(<span class="op">-</span>hospital_<span class="dv">0</span>, <span class="op">-</span>hospital_<span class="dv">1</span>), </span>
+<span id="cb26-5"><a href="matching.html#cb26-5"></a>                 <span class="dt">distance =</span> <span class="st">&quot;probit&quot;</span>)</span>
+<span id="cb26-6"><a href="matching.html#cb26-6"></a>psm_ur &lt;-<span class="st"> </span><span class="kw">matchit</span>(enrolled <span class="op">~</span><span class="st"> </span>age_hh_<span class="dv">0</span> <span class="op">+</span><span class="st"> </span>educ_hh_<span class="dv">0</span> <span class="op">+</span><span class="st"> </span>age_sp_<span class="dv">0</span> <span class="op">+</span><span class="st"> </span>educ_sp_<span class="dv">0</span> <span class="op">+</span></span>
+<span id="cb26-7"><a href="matching.html#cb26-7"></a><span class="st">                    </span>female_hh_<span class="dv">0</span> <span class="op">+</span><span class="st"> </span>indigenous_<span class="dv">0</span> <span class="op">+</span><span class="st"> </span>hhsize_<span class="dv">0</span> <span class="op">+</span><span class="st"> </span>dirtfloor_<span class="dv">0</span> <span class="op">+</span></span>
+<span id="cb26-8"><a href="matching.html#cb26-8"></a><span class="st">                    </span>bathroom_<span class="dv">0</span> <span class="op">+</span><span class="st"> </span>land_<span class="dv">0</span> <span class="op">+</span><span class="st"> </span>hospital_distance_<span class="dv">0</span>,</span>
+<span id="cb26-9"><a href="matching.html#cb26-9"></a>                 <span class="dt">data =</span> df_w <span class="op">%&gt;%</span><span class="st"> </span>dplyr<span class="op">::</span><span class="kw">select</span>(<span class="op">-</span>hospital_<span class="dv">0</span>, <span class="op">-</span>hospital_<span class="dv">1</span>), </span>
+<span id="cb26-10"><a href="matching.html#cb26-10"></a>                 <span class="dt">distance =</span> <span class="st">&quot;probit&quot;</span>)</span></code></pre></div>
+<!-- # ```{r ps-table, results = 'asis'} -->
+<!-- # modelsummary(list(psm_r$model, psm_ur$model), -->
+<!-- #              title = "Estimating the Propensity Score Based on Baseline Observed Characteristics", -->
+<!-- #              stars = TRUE, -->
+<!-- #              ) %>% -->
+<!-- #     kable_styling() -->
+<!-- # ``` -->
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="matching.html#cb27-1"></a><span class="kw">htmlreg</span>(<span class="kw">list</span>(psm_r<span class="op">$</span>model, psm_ur<span class="op">$</span>model),</span>
+<span id="cb27-2"><a href="matching.html#cb27-2"></a>        <span class="dt">doctype =</span> <span class="ot">FALSE</span>,</span>
+<span id="cb27-3"><a href="matching.html#cb27-3"></a>        <span class="dt">custom.coef.map =</span> <span class="kw">list</span>(<span class="st">&#39;age_hh_0&#39;</span> =<span class="st"> &quot;Age (HH) at Baseline&quot;</span>,</span>
+<span id="cb27-4"><a href="matching.html#cb27-4"></a>                               <span class="st">&#39;educ_hh_0&#39;</span> =<span class="st"> &quot;Education (HH) at Baseline&quot;</span>,</span>
+<span id="cb27-5"><a href="matching.html#cb27-5"></a>                               <span class="st">&#39;age_sp_0&#39;</span> =<span class="st"> &quot;Age (Spouse) at Baseline&quot;</span>,</span>
+<span id="cb27-6"><a href="matching.html#cb27-6"></a>                               <span class="st">&#39;educ_sp_0&#39;</span> =<span class="st"> &quot;Education (Spouse) at Baseline&quot;</span>,</span>
+<span id="cb27-7"><a href="matching.html#cb27-7"></a>                               <span class="st">&#39;female_hh_0&#39;</span> =<span class="st"> &quot;Female Head of Household (HH) at Baseline&quot;</span>,</span>
+<span id="cb27-8"><a href="matching.html#cb27-8"></a>                               <span class="st">&#39;indigenous_0&#39;</span> =<span class="st"> &quot;Indigenous Language Spoken at Baseline&quot;</span>,</span>
+<span id="cb27-9"><a href="matching.html#cb27-9"></a>                               <span class="st">&#39;hhsize_0&#39;</span> =<span class="st"> &quot;Number of Household Members at Baseline&quot;</span>,</span>
+<span id="cb27-10"><a href="matching.html#cb27-10"></a>                               <span class="st">&#39;dirtfloor_0&#39;</span> =<span class="st"> &quot;Dirt floor at Baseline&quot;</span>,</span>
+<span id="cb27-11"><a href="matching.html#cb27-11"></a>                               <span class="st">&#39;bathroom_0&#39;</span> =<span class="st"> &quot;Private Bathroom at Baseline&quot;</span>,</span>
+<span id="cb27-12"><a href="matching.html#cb27-12"></a>                               <span class="st">&#39;land_0&#39;</span> =<span class="st"> &quot;Hectares of Land at Baseline&quot;</span>,</span>
+<span id="cb27-13"><a href="matching.html#cb27-13"></a>                               <span class="st">&#39;hospital_distance_0&#39;</span> =<span class="st"> &quot;Distance From Hospital at Baseline&quot;</span>),</span>
+<span id="cb27-14"><a href="matching.html#cb27-14"></a>        <span class="dt">caption =</span> <span class="st">&quot;Estimating the Propensity Score Based on Baseline Observed Characteristics&quot;</span>,</span>
+<span id="cb27-15"><a href="matching.html#cb27-15"></a>        <span class="dt">custom.model.names =</span> <span class="kw">c</span>(<span class="st">&quot;Limited Set&quot;</span>, <span class="st">&quot;Full Set&quot;</span>))</span></code></pre></div>
+<table class="texreg" style="margin: 10px auto;border-collapse: collapse;border-spacing: 0px;caption-side: bottom;color: #000000;border-top: 2px solid #000000;">
+<caption>
+Estimating the Propensity Score Based on Baseline Observed Characteristics
+</caption>
+<thead>
+<tr>
+<th style="padding-left: 5px;padding-right: 5px;">
+ 
+</th>
+<th style="padding-left: 5px;padding-right: 5px;">
+Limited Set
+</th>
+<th style="padding-left: 5px;padding-right: 5px;">
+Full Set
+</th>
+</tr>
+</thead>
+<tbody>
+<tr style="border-top: 1px solid #000000;">
+<td style="padding-left: 5px;padding-right: 5px;">
+Age (HH) at Baseline
+</td>
+<td style="padding-left: 5px;padding-right: 5px;">
+-0.02<sup>***</sup>
+</td>
+<td style="padding-left: 5px;padding-right: 5px;">
+-0.01<sup>***</sup>
+</td>
+</tr>
+<tr>
+<td style="padding-left: 5px;padding-right: 5px;">
+ 
+</td>
+<td style="padding-left: 5px;padding-right: 5px;">
+(0.00)
+</td>
+<td style="padding-left: 5px;padding-right: 5px;">
+(0.00)
+</td>
+</tr>
+<tr>
+<td style="padding-left: 5px;padding-right: 5px;">
+Education (HH) at Baseline
+</td>
+<td style="padding-left: 5px;padding-right: 5px;">
+-0.04<sup>***</sup>
+</td>
+<td style="padding-left: 5px;padding-right: 5px;">
+-0.02<sup>***</sup>
+</td>
+</tr>
+<tr>
+<td style="padding-left: 5px;padding-right: 5px;">
+ 
+</td>
+<td style="padding-left: 5px;padding-right: 5px;">
+(0.01)
+</td>
+<td style="padding-left: 5px;padding-right: 5px;">
+(0.01)
+</td>
+</tr>
+<tr>
+<td style="padding-left: 5px;padding-right: 5px;">
+Age (Spouse) at Baseline
+</td>
+<td style="padding-left: 5px;padding-right: 5px;">
+ 
+</td>
+<td style="padding-left: 5px;padding-right: 5px;">
+-0.01<sup>***</sup>
+</td>
+</tr>
+<tr>
+<td style="padding-left: 5px;padding-right: 5px;">
+ 
+</td>
+<td style="padding-left: 5px;padding-right: 5px;">
+ 
+</td>
+<td style="padding-left: 5px;padding-right: 5px;">
+(0.00)
+</td>
+</tr>
+<tr>
+<td style="padding-left: 5px;padding-right: 5px;">
+Education (Spouse) at Baseline
+</td>
+<td style="padding-left: 5px;padding-right: 5px;">
+ 
+</td>
+<td style="padding-left: 5px;padding-right: 5px;">
+-0.02<sup>*</sup>
+</td>
+</tr>
+<tr>
+<td style="padding-left: 5px;padding-right: 5px;">
+ 
+</td>
+<td style="padding-left: 5px;padding-right: 5px;">
+ 
+</td>
+<td style="padding-left: 5px;padding-right: 5px;">
+(0.01)
+</td>
+</tr>
+<tr>
+<td style="padding-left: 5px;padding-right: 5px;">
+Female Head of Household (HH) at Baseline
+</td>
+<td style="padding-left: 5px;padding-right: 5px;">
+ 
+</td>
+<td style="padding-left: 5px;padding-right: 5px;">
+-0.02
+</td>
+</tr>
+<tr>
+<td style="padding-left: 5px;padding-right: 5px;">
+ 
+</td>
+<td style="padding-left: 5px;padding-right: 5px;">
+ 
+</td>
+<td style="padding-left: 5px;padding-right: 5px;">
+(0.05)
+</td>
+</tr>
+<tr>
+<td style="padding-left: 5px;padding-right: 5px;">
+Indigenous Language Spoken at Baseline
+</td>
+<td style="padding-left: 5px;padding-right: 5px;">
+ 
+</td>
+<td style="padding-left: 5px;padding-right: 5px;">
+0.16<sup>***</sup>
+</td>
+</tr>
+<tr>
+<td style="padding-left: 5px;padding-right: 5px;">
+ 
+</td>
+<td style="padding-left: 5px;padding-right: 5px;">
+ 
+</td>
+<td style="padding-left: 5px;padding-right: 5px;">
+(0.03)
+</td>
+</tr>
+<tr>
+<td style="padding-left: 5px;padding-right: 5px;">
+Number of Household Members at Baseline
+</td>
+<td style="padding-left: 5px;padding-right: 5px;">
+ 
+</td>
+<td style="padding-left: 5px;padding-right: 5px;">
+0.12<sup>***</sup>
+</td>
+</tr>
+<tr>
+<td style="padding-left: 5px;padding-right: 5px;">
+ 
+</td>
+<td style="padding-left: 5px;padding-right: 5px;">
+ 
+</td>
+<td style="padding-left: 5px;padding-right: 5px;">
+(0.01)
+</td>
+</tr>
+<tr>
+<td style="padding-left: 5px;padding-right: 5px;">
+Dirt floor at Baseline
+</td>
+<td style="padding-left: 5px;padding-right: 5px;">
+ 
+</td>
+<td style="padding-left: 5px;padding-right: 5px;">
+0.38<sup>***</sup>
+</td>
+</tr>
+<tr>
+<td style="padding-left: 5px;padding-right: 5px;">
+ 
+</td>
+<td style="padding-left: 5px;padding-right: 5px;">
+ 
+</td>
+<td style="padding-left: 5px;padding-right: 5px;">
+(0.03)
+</td>
+</tr>
+<tr>
+<td style="padding-left: 5px;padding-right: 5px;">
+Private Bathroom at Baseline
+</td>
+<td style="padding-left: 5px;padding-right: 5px;">
+ 
+</td>
+<td style="padding-left: 5px;padding-right: 5px;">
+-0.12<sup>***</sup>
+</td>
+</tr>
+<tr>
+<td style="padding-left: 5px;padding-right: 5px;">
+ 
+</td>
+<td style="padding-left: 5px;padding-right: 5px;">
+ 
+</td>
+<td style="padding-left: 5px;padding-right: 5px;">
+(0.03)
+</td>
+</tr>
+<tr>
+<td style="padding-left: 5px;padding-right: 5px;">
+Hectares of Land at Baseline
+</td>
+<td style="padding-left: 5px;padding-right: 5px;">
+ 
+</td>
+<td style="padding-left: 5px;padding-right: 5px;">
+-0.03<sup>***</sup>
+</td>
+</tr>
+<tr>
+<td style="padding-left: 5px;padding-right: 5px;">
+ 
+</td>
+<td style="padding-left: 5px;padding-right: 5px;">
+ 
+</td>
+<td style="padding-left: 5px;padding-right: 5px;">
+(0.01)
+</td>
+</tr>
+<tr>
+<td style="padding-left: 5px;padding-right: 5px;">
+Distance From Hospital at Baseline
+</td>
+<td style="padding-left: 5px;padding-right: 5px;">
+ 
+</td>
+<td style="padding-left: 5px;padding-right: 5px;">
+0.00<sup>***</sup>
+</td>
+</tr>
+<tr>
+<td style="padding-left: 5px;padding-right: 5px;">
+ 
+</td>
+<td style="padding-left: 5px;padding-right: 5px;">
+ 
+</td>
+<td style="padding-left: 5px;padding-right: 5px;">
+(0.00)
+</td>
+</tr>
+<tr style="border-top: 1px solid #000000;">
+<td style="padding-left: 5px;padding-right: 5px;">
+AIC
+</td>
+<td style="padding-left: 5px;padding-right: 5px;">
+11658.35
+</td>
+<td style="padding-left: 5px;padding-right: 5px;">
+11037.04
+</td>
+</tr>
+<tr>
+<td style="padding-left: 5px;padding-right: 5px;">
+BIC
+</td>
+<td style="padding-left: 5px;padding-right: 5px;">
+11679.96
+</td>
+<td style="padding-left: 5px;padding-right: 5px;">
+11123.46
+</td>
+</tr>
+<tr>
+<td style="padding-left: 5px;padding-right: 5px;">
+Log Likelihood
+</td>
+<td style="padding-left: 5px;padding-right: 5px;">
+-5826.18
+</td>
+<td style="padding-left: 5px;padding-right: 5px;">
+-5506.52
+</td>
+</tr>
+<tr>
+<td style="padding-left: 5px;padding-right: 5px;">
+Deviance
+</td>
+<td style="padding-left: 5px;padding-right: 5px;">
+11652.35
+</td>
+<td style="padding-left: 5px;padding-right: 5px;">
+11013.04
+</td>
+</tr>
+<tr style="border-bottom: 2px solid #000000;">
+<td style="padding-left: 5px;padding-right: 5px;">
+Num. obs.
+</td>
+<td style="padding-left: 5px;padding-right: 5px;">
+9913
+</td>
+<td style="padding-left: 5px;padding-right: 5px;">
+9913
+</td>
+</tr>
+</tbody>
+<tfoot>
+<tr>
+<td style="font-size: 0.8em;" colspan="3">
+<sup><em><strong></sup>p &lt; 0.001; <sup></strong></sup>p &lt; 0.01; <sup></em></sup>p &lt; 0.05
+</td>
+</tr>
+</tfoot>
+</table>
+<p>As shown in the above table, the likelihood that a household is enrolled in the program is smaller if the household is older, more educated, headed by a female, has a bathroom, or owns larger amounts of land. By contrast, being indigenous, having more household members, having a dirt floor, and being located further from a hospital all increase the likelihood that a household is enrolled in the program. So overall, it seems that poorer and less-educated households are more likely to be enrolled, which is good news for a program that targets poor people.</p>
+<p><strong>Plot the distribution of the Propensity Score by enrollment. What can we say about common support?</strong></p>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="matching.html#cb28-1"></a>df_w &lt;-<span class="st"> </span>df_w <span class="op">%&gt;%</span></span>
+<span id="cb28-2"><a href="matching.html#cb28-2"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">ps_ur =</span> psm_ur<span class="op">$</span>model<span class="op">$</span>fitted.values)</span>
+<span id="cb28-3"><a href="matching.html#cb28-3"></a></span>
+<span id="cb28-4"><a href="matching.html#cb28-4"></a>df_w <span class="op">%&gt;%</span></span>
+<span id="cb28-5"><a href="matching.html#cb28-5"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">enrolled_lab =</span> <span class="kw">ifelse</span>(enrolled <span class="op">==</span><span class="st"> </span><span class="dv">1</span>, <span class="st">&quot;Enrolled&quot;</span>, <span class="st">&quot;Not Enrolled&quot;</span>)) <span class="op">%&gt;%</span></span>
+<span id="cb28-6"><a href="matching.html#cb28-6"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> ps_ur,</span>
+<span id="cb28-7"><a href="matching.html#cb28-7"></a>             <span class="dt">group =</span> enrolled_lab, <span class="dt">colour =</span> enrolled_lab, <span class="dt">fill =</span> enrolled_lab)) <span class="op">+</span></span>
+<span id="cb28-8"><a href="matching.html#cb28-8"></a><span class="st">  </span><span class="kw">geom_density</span>(<span class="dt">alpha =</span> <span class="kw">I</span>(<span class="fl">0.2</span>)) <span class="op">+</span></span>
+<span id="cb28-9"><a href="matching.html#cb28-9"></a><span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Propensity Score&quot;</span>) <span class="op">+</span></span>
+<span id="cb28-10"><a href="matching.html#cb28-10"></a><span class="st">  </span><span class="kw">scale_fill_viridis_d</span>(<span class="st">&quot;Status:&quot;</span>, <span class="dt">end =</span> <span class="fl">0.7</span>) <span class="op">+</span></span>
+<span id="cb28-11"><a href="matching.html#cb28-11"></a><span class="st">  </span><span class="kw">scale_colour_viridis_d</span>(<span class="st">&quot;Status:&quot;</span>, <span class="dt">end =</span> <span class="fl">0.7</span>) <span class="op">+</span></span>
+<span id="cb28-12"><a href="matching.html#cb28-12"></a><span class="st">  </span><span class="kw">theme</span>(<span class="dt">legend.position =</span> <span class="st">&quot;bottom&quot;</span>)</span></code></pre></div>
+<div class="figure"><span id="fig:ps-distrib"></span>
+<img src="iep_solutions_files/figure-html/ps-distrib-1.png" alt="Distribution of Propensity Score by Enrollment Status" width="672" />
+<p class="caption">
+Figure 7.1: Distribution of Propensity Score by Enrollment Status
+</p>
+</div>
+<p>You check the distribution of the propensity score for the enrolled and matched comparison households. Figure <a href="matching.html#fig:ps-distrib">7.1</a> shows that common support (when using the full set of explanatory variables) extends across the whole distribution of the propensity score. In fact, none of the enrolled households fall outside the area of common support. In other words, we are able to find a matched comparison household for each of the enrolled households.</p>
+<p><strong>Did matching by the propensity score improve balance?</strong></p>
+<!-- ```{r} -->
+<!-- summary(psm_ur) -->
+<!-- ``` -->
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="matching.html#cb29-1"></a><span class="kw">kable</span>(<span class="kw">summary</span>(psm_ur)<span class="op">$</span>sum.matched,</span>
+<span id="cb29-2"><a href="matching.html#cb29-2"></a>      <span class="dt">caption =</span> <span class="st">&quot;Balance Before Matching&quot;</span>) <span class="op">%&gt;%</span></span>
+<span id="cb29-3"><a href="matching.html#cb29-3"></a><span class="st">  </span><span class="kw">kable_styling</span>()</span></code></pre></div>
+<table class="table" style="margin-left: auto; margin-right: auto;">
+<caption>
+<span id="tab:balance-tab-matched">Table 7.1: </span>Balance Before Matching
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;">
+</th>
+<th style="text-align:right;">
+Means Treated
+</th>
+<th style="text-align:right;">
+Means Control
+</th>
+<th style="text-align:right;">
+SD Control
+</th>
+<th style="text-align:right;">
+Mean Diff
+</th>
+<th style="text-align:right;">
+eQQ Med
+</th>
+<th style="text-align:right;">
+eQQ Mean
+</th>
+<th style="text-align:right;">
+eQQ Max
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+distance
+</td>
+<td style="text-align:right;">
+0.3694119
+</td>
+<td style="text-align:right;">
+0.3687162
+</td>
+<td style="text-align:right;">
+0.1289918
+</td>
+<td style="text-align:right;">
+0.0006957
+</td>
+<td style="text-align:right;">
+0.0001013
+</td>
+<td style="text-align:right;">
+0.0007221
+</td>
+<td style="text-align:right;">
+0.0167152
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+age_hh_0
+</td>
+<td style="text-align:right;">
+41.6565796
+</td>
+<td style="text-align:right;">
+41.7867746
+</td>
+<td style="text-align:right;">
+13.1422452
+</td>
+<td style="text-align:right;">
+-0.1301951
+</td>
+<td style="text-align:right;">
+1.0000000
+</td>
+<td style="text-align:right;">
+0.8650129
+</td>
+<td style="text-align:right;">
+5.0000000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+educ_hh_0
+</td>
+<td style="text-align:right;">
+2.9711803
+</td>
+<td style="text-align:right;">
+2.9549320
+</td>
+<td style="text-align:right;">
+2.7497469
+</td>
+<td style="text-align:right;">
+0.0162484
+</td>
+<td style="text-align:right;">
+0.0000000
+</td>
+<td style="text-align:right;">
+0.1437787
+</td>
+<td style="text-align:right;">
+4.0000000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+age_sp_0
+</td>
+<td style="text-align:right;">
+36.8363698
+</td>
+<td style="text-align:right;">
+36.9915655
+</td>
+<td style="text-align:right;">
+11.0374258
+</td>
+<td style="text-align:right;">
+-0.1551957
+</td>
+<td style="text-align:right;">
+1.0000000
+</td>
+<td style="text-align:right;">
+0.7699055
+</td>
+<td style="text-align:right;">
+8.0000000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+educ_sp_0
+</td>
+<td style="text-align:right;">
+2.7032726
+</td>
+<td style="text-align:right;">
+2.7128880
+</td>
+<td style="text-align:right;">
+2.6196748
+</td>
+<td style="text-align:right;">
+-0.0096154
+</td>
+<td style="text-align:right;">
+0.0000000
+</td>
+<td style="text-align:right;">
+0.1378205
+</td>
+<td style="text-align:right;">
+4.0000000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+female_hh_0
+</td>
+<td style="text-align:right;">
+0.0732119
+</td>
+<td style="text-align:right;">
+0.0732119
+</td>
+<td style="text-align:right;">
+0.2605279
+</td>
+<td style="text-align:right;">
+0.0000000
+</td>
+<td style="text-align:right;">
+0.0000000
+</td>
+<td style="text-align:right;">
+0.0000000
+</td>
+<td style="text-align:right;">
+0.0000000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+indigenous_0
+</td>
+<td style="text-align:right;">
+0.4291498
+</td>
+<td style="text-align:right;">
+0.4234143
+</td>
+<td style="text-align:right;">
+0.4941832
+</td>
+<td style="text-align:right;">
+0.0057355
+</td>
+<td style="text-align:right;">
+0.0000000
+</td>
+<td style="text-align:right;">
+0.0057355
+</td>
+<td style="text-align:right;">
+1.0000000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+hhsize_0
+</td>
+<td style="text-align:right;">
+5.7699055
+</td>
+<td style="text-align:right;">
+5.7884615
+</td>
+<td style="text-align:right;">
+2.1411833
+</td>
+<td style="text-align:right;">
+-0.0185560
+</td>
+<td style="text-align:right;">
+0.0000000
+</td>
+<td style="text-align:right;">
+0.1373144
+</td>
+<td style="text-align:right;">
+1.0000000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+dirtfloor_0
+</td>
+<td style="text-align:right;">
+0.7216599
+</td>
+<td style="text-align:right;">
+0.7253711
+</td>
+<td style="text-align:right;">
+0.4464024
+</td>
+<td style="text-align:right;">
+-0.0037112
+</td>
+<td style="text-align:right;">
+0.0000000
+</td>
+<td style="text-align:right;">
+0.0037112
+</td>
+<td style="text-align:right;">
+1.0000000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+bathroom_0
+</td>
+<td style="text-align:right;">
+0.5735493
+</td>
+<td style="text-align:right;">
+0.5732119
+</td>
+<td style="text-align:right;">
+0.4946944
+</td>
+<td style="text-align:right;">
+0.0003374
+</td>
+<td style="text-align:right;">
+0.0000000
+</td>
+<td style="text-align:right;">
+0.0003374
+</td>
+<td style="text-align:right;">
+1.0000000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+land_0
+</td>
+<td style="text-align:right;">
+1.6771255
+</td>
+<td style="text-align:right;">
+1.7010796
+</td>
+<td style="text-align:right;">
+2.6217989
+</td>
+<td style="text-align:right;">
+-0.0239541
+</td>
+<td style="text-align:right;">
+0.0000000
+</td>
+<td style="text-align:right;">
+0.1103239
+</td>
+<td style="text-align:right;">
+3.0000000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+hospital_distance_0
+</td>
+<td style="text-align:right;">
+109.2043122
+</td>
+<td style="text-align:right;">
+108.5100383
+</td>
+<td style="text-align:right;">
+41.8790212
+</td>
+<td style="text-align:right;">
+0.6942738
+</td>
+<td style="text-align:right;">
+1.2450775
+</td>
+<td style="text-align:right;">
+1.6190618
+</td>
+<td style="text-align:right;">
+7.5290520
+</td>
+</tr>
+</tbody>
+</table>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="matching.html#cb30-1"></a><span class="kw">kable</span>(<span class="kw">summary</span>(psm_ur)<span class="op">$</span>sum.all,</span>
+<span id="cb30-2"><a href="matching.html#cb30-2"></a>      <span class="dt">caption =</span> <span class="st">&quot;Balance After Matching&quot;</span>) <span class="op">%&gt;%</span></span>
+<span id="cb30-3"><a href="matching.html#cb30-3"></a><span class="st">  </span><span class="kw">kable_styling</span>()</span></code></pre></div>
+<table class="table" style="margin-left: auto; margin-right: auto;">
+<caption>
+<span id="tab:balance-tab-all">Table 7.2: </span>Balance After Matching
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;">
+</th>
+<th style="text-align:right;">
+Means Treated
+</th>
+<th style="text-align:right;">
+Means Control
+</th>
+<th style="text-align:right;">
+SD Control
+</th>
+<th style="text-align:right;">
+Mean Diff
+</th>
+<th style="text-align:right;">
+eQQ Med
+</th>
+<th style="text-align:right;">
+eQQ Mean
+</th>
+<th style="text-align:right;">
+eQQ Max
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+distance
+</td>
+<td style="text-align:right;">
+0.3694119
+</td>
+<td style="text-align:right;">
+0.2683525
+</td>
+<td style="text-align:right;">
+0.1435197
+</td>
+<td style="text-align:right;">
+0.1010594
+</td>
+<td style="text-align:right;">
+0.1109167
+</td>
+<td style="text-align:right;">
+0.1010943
+</td>
+<td style="text-align:right;">
+0.1284425
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+age_hh_0
+</td>
+<td style="text-align:right;">
+41.6565796
+</td>
+<td style="text-align:right;">
+48.1384372
+</td>
+<td style="text-align:right;">
+15.5146171
+</td>
+<td style="text-align:right;">
+-6.4818576
+</td>
+<td style="text-align:right;">
+7.0000000
+</td>
+<td style="text-align:right;">
+6.4925432
+</td>
+<td style="text-align:right;">
+10.0000000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+educ_hh_0
+</td>
+<td style="text-align:right;">
+2.9711803
+</td>
+<td style="text-align:right;">
+2.7744736
+</td>
+<td style="text-align:right;">
+2.7971992
+</td>
+<td style="text-align:right;">
+0.1967067
+</td>
+<td style="text-align:right;">
+0.0000000
+</td>
+<td style="text-align:right;">
+0.3312010
+</td>
+<td style="text-align:right;">
+4.0000000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+age_sp_0
+</td>
+<td style="text-align:right;">
+36.8363698
+</td>
+<td style="text-align:right;">
+41.6117427
+</td>
+<td style="text-align:right;">
+12.9925496
+</td>
+<td style="text-align:right;">
+-4.7753729
+</td>
+<td style="text-align:right;">
+5.0000000
+</td>
+<td style="text-align:right;">
+4.7908232
+</td>
+<td style="text-align:right;">
+9.0000000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+educ_sp_0
+</td>
+<td style="text-align:right;">
+2.7032726
+</td>
+<td style="text-align:right;">
+2.5810189
+</td>
+<td style="text-align:right;">
+2.5713309
+</td>
+<td style="text-align:right;">
+0.1222538
+</td>
+<td style="text-align:right;">
+0.0000000
+</td>
+<td style="text-align:right;">
+0.2663630
+</td>
+<td style="text-align:right;">
+4.0000000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+female_hh_0
+</td>
+<td style="text-align:right;">
+0.0732119
+</td>
+<td style="text-align:right;">
+0.1100878
+</td>
+<td style="text-align:right;">
+0.3130217
+</td>
+<td style="text-align:right;">
+-0.0368759
+</td>
+<td style="text-align:right;">
+0.0000000
+</td>
+<td style="text-align:right;">
+0.0367746
+</td>
+<td style="text-align:right;">
+1.0000000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+indigenous_0
+</td>
+<td style="text-align:right;">
+0.4291498
+</td>
+<td style="text-align:right;">
+0.3203339
+</td>
+<td style="text-align:right;">
+0.4666384
+</td>
+<td style="text-align:right;">
+0.1088159
+</td>
+<td style="text-align:right;">
+0.0000000
+</td>
+<td style="text-align:right;">
+0.1089744
+</td>
+<td style="text-align:right;">
+1.0000000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+hhsize_0
+</td>
+<td style="text-align:right;">
+5.7699055
+</td>
+<td style="text-align:right;">
+4.9263203
+</td>
+<td style="text-align:right;">
+2.2276936
+</td>
+<td style="text-align:right;">
+0.8435852
+</td>
+<td style="text-align:right;">
+1.0000000
+</td>
+<td style="text-align:right;">
+0.8468286
+</td>
+<td style="text-align:right;">
+2.0000000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+dirtfloor_0
+</td>
+<td style="text-align:right;">
+0.7216599
+</td>
+<td style="text-align:right;">
+0.5533170
+</td>
+<td style="text-align:right;">
+0.4971849
+</td>
+<td style="text-align:right;">
+0.1683429
+</td>
+<td style="text-align:right;">
+0.0000000
+</td>
+<td style="text-align:right;">
+0.1683536
+</td>
+<td style="text-align:right;">
+1.0000000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+bathroom_0
+</td>
+<td style="text-align:right;">
+0.5735493
+</td>
+<td style="text-align:right;">
+0.6340481
+</td>
+<td style="text-align:right;">
+0.4817307
+</td>
+<td style="text-align:right;">
+-0.0604988
+</td>
+<td style="text-align:right;">
+0.0000000
+</td>
+<td style="text-align:right;">
+0.0603914
+</td>
+<td style="text-align:right;">
+1.0000000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+land_0
+</td>
+<td style="text-align:right;">
+1.6771255
+</td>
+<td style="text-align:right;">
+2.2511153
+</td>
+<td style="text-align:right;">
+3.3057321
+</td>
+<td style="text-align:right;">
+-0.5739898
+</td>
+<td style="text-align:right;">
+0.0000000
+</td>
+<td style="text-align:right;">
+0.5779352
+</td>
+<td style="text-align:right;">
+5.0000000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+hospital_distance_0
+</td>
+<td style="text-align:right;">
+109.2043122
+</td>
+<td style="text-align:right;">
+103.6626222
+</td>
+<td style="text-align:right;">
+42.0414242
+</td>
+<td style="text-align:right;">
+5.5416899
+</td>
+<td style="text-align:right;">
+5.2651255
+</td>
+<td style="text-align:right;">
+5.7016559
+</td>
+<td style="text-align:right;">
+13.5770481
+</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Using the matched sample, what is the estimated effect of the program?</strong></p>
+<p>To obtain the estimated impact using the matching method, we first need to extract the matched data set.</p>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="matching.html#cb31-1"></a>match_df_r &lt;-<span class="st"> </span><span class="kw">match.data</span>(psm_r)</span>
+<span id="cb31-2"><a href="matching.html#cb31-2"></a>match_df_ur &lt;-<span class="st"> </span><span class="kw">match.data</span>(psm_ur)</span></code></pre></div>
+<p>We can then estimate the effect of the program using a (weighted) linear regression. In this case all weights are equal to 1, meaning there is no need to use the weights, as we have one to one matching without replacement.</p>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="matching.html#cb32-1"></a>out_lm_r &lt;-<span class="st"> </span><span class="kw">lm_robust</span>(health_expenditures_<span class="dv">1</span> <span class="op">~</span><span class="st"> </span>enrolled,</span>
+<span id="cb32-2"><a href="matching.html#cb32-2"></a>                      <span class="dt">data =</span> match_df_r, <span class="dt">clusters =</span> locality_identifier,</span>
+<span id="cb32-3"><a href="matching.html#cb32-3"></a>                      <span class="dt">weights =</span> weights)</span>
+<span id="cb32-4"><a href="matching.html#cb32-4"></a>out_lm_ur &lt;-<span class="st"> </span><span class="kw">lm_robust</span>(health_expenditures_<span class="dv">1</span> <span class="op">~</span><span class="st"> </span>enrolled,</span>
+<span id="cb32-5"><a href="matching.html#cb32-5"></a>                      <span class="dt">data =</span> match_df_ur, <span class="dt">clusters =</span> locality_identifier,</span>
+<span id="cb32-6"><a href="matching.html#cb32-6"></a>                      <span class="dt">weights =</span> weights)</span></code></pre></div>
+<!-- # ```{r outcome-tab, results = 'asis'} -->
+<!-- # modelsummary(list("Restricted" = out_lm_r, "Unrestricted" = out_lm_ur), -->
+<!-- #              title = "Evaluating HISP: Matching on Baseline Characteristics and Regression Analysis") %>% -->
+<!-- #     kable_styling() -->
+<!-- # ``` -->
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="matching.html#cb33-1"></a><span class="kw">htmlreg</span>(<span class="kw">list</span>(out_lm_r, out_lm_ur),</span>
+<span id="cb33-2"><a href="matching.html#cb33-2"></a>        <span class="dt">doctype =</span> <span class="ot">FALSE</span>,</span>
+<span id="cb33-3"><a href="matching.html#cb33-3"></a>        <span class="dt">caption =</span> <span class="st">&quot;Evaluating HISP: Matching on Baseline Characteristics and Regression Analysis&quot;</span>,</span>
+<span id="cb33-4"><a href="matching.html#cb33-4"></a>        <span class="dt">custom.model.names =</span> <span class="kw">c</span>(<span class="st">&quot;Limited Set&quot;</span>, <span class="st">&quot;Full Set&quot;</span>))</span></code></pre></div>
+<table class="texreg" style="margin: 10px auto;border-collapse: collapse;border-spacing: 0px;caption-side: bottom;color: #000000;border-top: 2px solid #000000;">
+<caption>
+Evaluating HISP: Matching on Baseline Characteristics and Regression Analysis
+</caption>
+<thead>
+<tr>
+<th style="padding-left: 5px;padding-right: 5px;">
+ 
+</th>
+<th style="padding-left: 5px;padding-right: 5px;">
+Limited Set
+</th>
+<th style="padding-left: 5px;padding-right: 5px;">
+Full Set
+</th>
+</tr>
+</thead>
+<tbody>
+<tr style="border-top: 1px solid #000000;">
+<td style="padding-left: 5px;padding-right: 5px;">
+(Intercept)
+</td>
+<td style="padding-left: 5px;padding-right: 5px;">
+19.66<sup>*</sup>
+</td>
+<td style="padding-left: 5px;padding-right: 5px;">
+17.84<sup>*</sup>
+</td>
+</tr>
+<tr>
+<td style="padding-left: 5px;padding-right: 5px;">
+ 
+</td>
+<td style="padding-left: 5px;padding-right: 5px;">
+[ 19.04; 20.27]
+</td>
+<td style="padding-left: 5px;padding-right: 5px;">
+[ 17.27; 18.41]
+</td>
+</tr>
+<tr>
+<td style="padding-left: 5px;padding-right: 5px;">
+enrolled
+</td>
+<td style="padding-left: 5px;padding-right: 5px;">
+-11.82<sup>*</sup>
+</td>
+<td style="padding-left: 5px;padding-right: 5px;">
+-10.00<sup>*</sup>
+</td>
+</tr>
+<tr>
+<td style="padding-left: 5px;padding-right: 5px;">
+ 
+</td>
+<td style="padding-left: 5px;padding-right: 5px;">
+[-12.58; -11.06]
+</td>
+<td style="padding-left: 5px;padding-right: 5px;">
+[-10.73; -9.27]
+</td>
+</tr>
+<tr style="border-top: 1px solid #000000;">
+<td style="padding-left: 5px;padding-right: 5px;">
+R<sup>2</sup>
+</td>
+<td style="padding-left: 5px;padding-right: 5px;">
+0.30
+</td>
+<td style="padding-left: 5px;padding-right: 5px;">
+0.28
+</td>
+</tr>
+<tr>
+<td style="padding-left: 5px;padding-right: 5px;">
+Adj. R<sup>2</sup>
+</td>
+<td style="padding-left: 5px;padding-right: 5px;">
+0.30
+</td>
+<td style="padding-left: 5px;padding-right: 5px;">
+0.28
+</td>
+</tr>
+<tr>
+<td style="padding-left: 5px;padding-right: 5px;">
+Num. obs.
+</td>
+<td style="padding-left: 5px;padding-right: 5px;">
+5928
+</td>
+<td style="padding-left: 5px;padding-right: 5px;">
+5928
+</td>
+</tr>
+<tr>
+<td style="padding-left: 5px;padding-right: 5px;">
+RMSE
+</td>
+<td style="padding-left: 5px;padding-right: 5px;">
+9.07
+</td>
+<td style="padding-left: 5px;padding-right: 5px;">
+8.03
+</td>
+</tr>
+<tr style="border-bottom: 2px solid #000000;">
+<td style="padding-left: 5px;padding-right: 5px;">
+N Clusters
+</td>
+<td style="padding-left: 5px;padding-right: 5px;">
+196
+</td>
+<td style="padding-left: 5px;padding-right: 5px;">
+197
+</td>
+</tr>
+</tbody>
+<tfoot>
+<tr>
+<td style="font-size: 0.8em;" colspan="3">
+<sup>*</sup> Null hypothesis value outside the confidence interval.
+</td>
+</tr>
+</tfoot>
+</table>
+<p>Table X shows that the impact estimated from applying this procedure is a reduction of US$10.00 in household health expenditures when matching on the full set of covariates.</p>
+<p>You realize that you also have information on baseline outcomes in your survey data, so you decide to carry out matched difference-in-differences in addition to using the full set of explanatory variables.</p>
+<p>To do so we merge the matching weights into the original data frame, allowing us to remove observations that were not matched while keeping the panel data format needed for a difference-in-differences regression.</p>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="matching.html#cb34-1"></a><span class="co"># limited set of covariates</span></span>
+<span id="cb34-2"><a href="matching.html#cb34-2"></a>df_long_match_r &lt;-<span class="st"> </span>df <span class="op">%&gt;%</span></span>
+<span id="cb34-3"><a href="matching.html#cb34-3"></a><span class="st">  </span><span class="kw">left_join</span>(match_df_r <span class="op">%&gt;%</span><span class="st"> </span>dplyr<span class="op">::</span><span class="kw">select</span>(household_identifier, weights)) <span class="op">%&gt;%</span></span>
+<span id="cb34-4"><a href="matching.html#cb34-4"></a><span class="st">  </span><span class="kw">filter</span>(<span class="op">!</span><span class="kw">is.na</span>(weights))</span></code></pre></div>
+<pre><code>## Joining, by = &quot;household_identifier&quot;</code></pre>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="matching.html#cb36-1"></a><span class="co"># full set of covaraites</span></span>
+<span id="cb36-2"><a href="matching.html#cb36-2"></a>df_long_match_ur &lt;-<span class="st"> </span>df <span class="op">%&gt;%</span></span>
+<span id="cb36-3"><a href="matching.html#cb36-3"></a><span class="st">  </span><span class="kw">left_join</span>(match_df_ur <span class="op">%&gt;%</span><span class="st"> </span>dplyr<span class="op">::</span><span class="kw">select</span>(household_identifier, weights)) <span class="op">%&gt;%</span></span>
+<span id="cb36-4"><a href="matching.html#cb36-4"></a><span class="st">  </span><span class="kw">filter</span>(<span class="op">!</span><span class="kw">is.na</span>(weights))</span></code></pre></div>
+<pre><code>## Joining, by = &quot;household_identifier&quot;</code></pre>
+<p>We can now estimate the difference-in-differences regression.</p>
+<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="matching.html#cb38-1"></a>did_reg_r &lt;-<span class="st"> </span><span class="kw">lm_robust</span>(health_expenditures <span class="op">~</span><span class="st"> </span>enrolled <span class="op">*</span><span class="st"> </span>round,</span>
+<span id="cb38-2"><a href="matching.html#cb38-2"></a>                        <span class="dt">data =</span> df_long_match_r, <span class="dt">weights =</span> weights,</span>
+<span id="cb38-3"><a href="matching.html#cb38-3"></a>                        <span class="dt">clusters =</span> locality_identifier)</span>
+<span id="cb38-4"><a href="matching.html#cb38-4"></a></span>
+<span id="cb38-5"><a href="matching.html#cb38-5"></a>did_reg_ur &lt;-<span class="st"> </span><span class="kw">lm_robust</span>(health_expenditures <span class="op">~</span><span class="st"> </span>enrolled <span class="op">*</span><span class="st"> </span>round,</span>
+<span id="cb38-6"><a href="matching.html#cb38-6"></a>                        <span class="dt">data =</span> df_long_match_ur, <span class="dt">weights =</span> weights,</span>
+<span id="cb38-7"><a href="matching.html#cb38-7"></a>                        <span class="dt">clusters =</span> locality_identifier)</span></code></pre></div>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="matching.html#cb39-1"></a><span class="kw">htmlreg</span>(<span class="kw">list</span>(did_reg_r, did_reg_ur), <span class="dt">doctype =</span> <span class="ot">FALSE</span>,</span>
+<span id="cb39-2"><a href="matching.html#cb39-2"></a>        <span class="dt">custom.coef.map =</span> <span class="kw">list</span>(<span class="st">&#39;enrolled&#39;</span> =<span class="st"> &quot;Enrollment&quot;</span>,</span>
+<span id="cb39-3"><a href="matching.html#cb39-3"></a>                               <span class="st">&#39;round&#39;</span> =<span class="st"> &quot;Round&quot;</span>,</span>
+<span id="cb39-4"><a href="matching.html#cb39-4"></a>                               <span class="st">&#39;enrolled:round&#39;</span> =<span class="st"> &quot;Enrollment X Round&quot;</span>),</span>
+<span id="cb39-5"><a href="matching.html#cb39-5"></a>        <span class="dt">caption =</span> <span class="st">&quot;Evaluating HISP: Difference-in-Differences Regression Combined With Matching&quot;</span>,</span>
+<span id="cb39-6"><a href="matching.html#cb39-6"></a>        <span class="dt">custom.model.names =</span> <span class="kw">c</span>(<span class="st">&quot;Limited Set&quot;</span>, <span class="st">&quot;Full Set&quot;</span>),</span>
+<span id="cb39-7"><a href="matching.html#cb39-7"></a><span class="dt">caption.above =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
+<table class="texreg" style="margin: 10px auto;border-collapse: collapse;border-spacing: 0px;color: #000000;border-top: 2px solid #000000;">
+<caption>
+Evaluating HISP: Difference-in-Differences Regression Combined With Matching
+</caption>
+<thead>
+<tr>
+<th style="padding-left: 5px;padding-right: 5px;">
+ 
+</th>
+<th style="padding-left: 5px;padding-right: 5px;">
+Limited Set
+</th>
+<th style="padding-left: 5px;padding-right: 5px;">
+Full Set
+</th>
+</tr>
+</thead>
+<tbody>
+<tr style="border-top: 1px solid #000000;">
+<td style="padding-left: 5px;padding-right: 5px;">
+Enrollment
+</td>
+<td style="padding-left: 5px;padding-right: 5px;">
+-2.71<sup>*</sup>
+</td>
+<td style="padding-left: 5px;padding-right: 5px;">
+-0.54<sup>*</sup>
+</td>
+</tr>
+<tr>
+<td style="padding-left: 5px;padding-right: 5px;">
+ 
+</td>
+<td style="padding-left: 5px;padding-right: 5px;">
+[-3.25; -2.18]
+</td>
+<td style="padding-left: 5px;padding-right: 5px;">
+[ -1.01; -0.07]
+</td>
+</tr>
+<tr>
+<td style="padding-left: 5px;padding-right: 5px;">
+Round
+</td>
+<td style="padding-left: 5px;padding-right: 5px;">
+2.45<sup>*</sup>
+</td>
+<td style="padding-left: 5px;padding-right: 5px;">
+2.81<sup>*</sup>
+</td>
+</tr>
+<tr>
+<td style="padding-left: 5px;padding-right: 5px;">
+ 
+</td>
+<td style="padding-left: 5px;padding-right: 5px;">
+[ 1.97; 2.94]
+</td>
+<td style="padding-left: 5px;padding-right: 5px;">
+[ 2.35; 3.26]
+</td>
+</tr>
+<tr>
+<td style="padding-left: 5px;padding-right: 5px;">
+Enrollment X Round
+</td>
+<td style="padding-left: 5px;padding-right: 5px;">
+-9.10<sup>*</sup>
+</td>
+<td style="padding-left: 5px;padding-right: 5px;">
+-9.46<sup>*</sup>
+</td>
+</tr>
+<tr>
+<td style="padding-left: 5px;padding-right: 5px;">
+ 
+</td>
+<td style="padding-left: 5px;padding-right: 5px;">
+[-9.70; -8.51]
+</td>
+<td style="padding-left: 5px;padding-right: 5px;">
+[-10.05; -8.87]
+</td>
+</tr>
+<tr style="border-top: 1px solid #000000;">
+<td style="padding-left: 5px;padding-right: 5px;">
+R<sup>2</sup>
+</td>
+<td style="padding-left: 5px;padding-right: 5px;">
+0.27
+</td>
+<td style="padding-left: 5px;padding-right: 5px;">
+0.24
+</td>
+</tr>
+<tr>
+<td style="padding-left: 5px;padding-right: 5px;">
+Adj. R<sup>2</sup>
+</td>
+<td style="padding-left: 5px;padding-right: 5px;">
+0.27
+</td>
+<td style="padding-left: 5px;padding-right: 5px;">
+0.24
+</td>
+</tr>
+<tr>
+<td style="padding-left: 5px;padding-right: 5px;">
+Num. obs.
+</td>
+<td style="padding-left: 5px;padding-right: 5px;">
+11856
+</td>
+<td style="padding-left: 5px;padding-right: 5px;">
+11856
+</td>
+</tr>
+<tr>
+<td style="padding-left: 5px;padding-right: 5px;">
+RMSE
+</td>
+<td style="padding-left: 5px;padding-right: 5px;">
+7.29
+</td>
+<td style="padding-left: 5px;padding-right: 5px;">
+6.53
+</td>
+</tr>
+<tr style="border-bottom: 2px solid #000000;">
+<td style="padding-left: 5px;padding-right: 5px;">
+N Clusters
+</td>
+<td style="padding-left: 5px;padding-right: 5px;">
+196
+</td>
+<td style="padding-left: 5px;padding-right: 5px;">
+197
+</td>
+</tr>
+</tbody>
+<tfoot>
+<tr>
+<td style="font-size: 0.8em;" colspan="3">
+<sup>*</sup> Null hypothesis value outside the confidence interval.
+</td>
+</tr>
+</tfoot>
+</table>
+<p>We estimate that enrollment reduced health expenditures by approximately 9 Dollars.</p>
+<p><strong>What are the basic assumptions required to accept these results based on the matching method?</strong></p>
+<p>To accept this result, we assume that there are no unobserved differences in the two groups that can be associated with health expenditures. This assumption is necessary because you can only use observed differences when matching households in the two groups.</p>
+<p><strong>Why are the results from the matching method different if you use the full versus the limited set of explanatory variables?</strong></p>
+<p>There might be some variables that are excluded from the limited set of explanatory variables that do affect both participation in the program and health expenditures. Omitting these variables will bias the impact estimate.</p>
+<p><strong>What happens when you compare the results from the matching method with the result form randomized assignment? Why do you think the results are so different for matching on a limited set of explanatory variables? Why is the result more similar when matching on a full set of explanatory variables?</strong></p>
+<p>Randomized assignment and matching primarily differ in how the treatment is given. In randomized assignment, the HISP is randomly assigned and the impact is measured by the difference in health expenditures between the treatment and comparison groups. In matching, the HISP is not randomly assigned. A comparison group is constructed from nonenrolled households that have similar characteristics to enrolled households using matching.</p>
+<p>When matching on a limited set of explanatory variables, the remaining unobserved differences in the matched comparison group likely account for some of these difference between the matching and the randomized assignment estimates.</p>
+<p>When matching on a full set of explanatory variables, the difference between the matching and randomized assignment estimates tends to get smaller. However, you cannot be sure that all relevant explanatory variables are accounted for.</p>
+<p><strong>Based on the result from the matching method, should the HISP be scaled up nationally?</strong></p>
+<p>Based strictly on the estimate from matching on a full set of explanatory variables, the HISP should not be scaled up nationally because it decreased health expenditures by $ 9.95, which is less than the government-determined threshold level of $10. However, the $9.95 estimate is very close to $10. In statistical terms, it is not statistically different from $10. Therefore, you might still argue that the HISP should be expanded nationally.</p>
+
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="difference-in-differences.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="design-and-sampling.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["iep_solutions.pdf", "iep_solutions.epub"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

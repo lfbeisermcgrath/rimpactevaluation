@@ -1,0 +1,744 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 3 Randomised Assignment | Impact Evaluation in Practice</title>
+  <meta name="description" content="Solutions for Impact Evaluation in Practice (2nd Edition)." />
+  <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 3 Randomised Assignment | Impact Evaluation in Practice" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="Solutions for Impact Evaluation in Practice (2nd Edition)." />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 3 Randomised Assignment | Impact Evaluation in Practice" />
+  
+  <meta name="twitter:description" content="Solutions for Impact Evaluation in Practice (2nd Edition)." />
+  
+
+<meta name="author" content="Liam F. Beiser-McGrath" />
+<meta name="author" content="Lecturer (Assistant Professor) in Politics, Royal Holloway, University of London" />
+<meta name="author" content="www.liambeisermcgrath.com" />
+<meta name="author" content="liam@liambeisermcgrath.com" />
+
+
+<meta name="date" content="2020-07-29" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="causal-inference-and-counterfactuals.html"/>
+<link rel="next" href="instrumental-variables.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+
+
+<style type="text/css">
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Impact Evaluation in Practice Solutions</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preamble</a></li>
+<li class="chapter" data-level="" data-path="about-the-author.html"><a href="about-the-author.html"><i class="fa fa-check"></i>About the Author</a></li>
+<li class="chapter" data-level="1" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>1</b> Introduction</a><ul>
+<li class="chapter" data-level="1.1" data-path="intro.html"><a href="intro.html#variable-definitions"><i class="fa fa-check"></i><b>1.1</b> Variable Definitions</a><ul>
+<li class="chapter" data-level="1.1.1" data-path="intro.html"><a href="intro.html#outcome-variable"><i class="fa fa-check"></i><b>1.1.1</b> Outcome Variable</a></li>
+<li class="chapter" data-level="1.1.2" data-path="intro.html"><a href="intro.html#control-variables"><i class="fa fa-check"></i><b>1.1.2</b> Control Variables</a></li>
+<li class="chapter" data-level="1.1.3" data-path="intro.html"><a href="intro.html#other-variables"><i class="fa fa-check"></i><b>1.1.3</b> Other Variables</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="causal-inference-and-counterfactuals.html"><a href="causal-inference-and-counterfactuals.html"><i class="fa fa-check"></i><b>2</b> Causal Inference and Counterfactuals</a><ul>
+<li class="chapter" data-level="2.1" data-path="causal-inference-and-counterfactuals.html"><a href="causal-inference-and-counterfactuals.html#before-after-designs"><i class="fa fa-check"></i><b>2.1</b> Before-After Designs</a></li>
+<li class="chapter" data-level="2.2" data-path="causal-inference-and-counterfactuals.html"><a href="causal-inference-and-counterfactuals.html#enrolled-vs.-non-enrolled"><i class="fa fa-check"></i><b>2.2</b> Enrolled vs. Non-Enrolled</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="randomised-assignment.html"><a href="randomised-assignment.html"><i class="fa fa-check"></i><b>3</b> Randomised Assignment</a></li>
+<li class="chapter" data-level="4" data-path="instrumental-variables.html"><a href="instrumental-variables.html"><i class="fa fa-check"></i><b>4</b> Instrumental Variables</a></li>
+<li class="chapter" data-level="5" data-path="regression-discontinuity-designs.html"><a href="regression-discontinuity-designs.html"><i class="fa fa-check"></i><b>5</b> Regression Discontinuity Designs</a></li>
+<li class="chapter" data-level="6" data-path="difference-in-differences.html"><a href="difference-in-differences.html"><i class="fa fa-check"></i><b>6</b> Difference-in-Differences</a></li>
+<li class="chapter" data-level="7" data-path="matching.html"><a href="matching.html"><i class="fa fa-check"></i><b>7</b> Matching</a></li>
+<li class="chapter" data-level="8" data-path="design-and-sampling.html"><a href="design-and-sampling.html"><i class="fa fa-check"></i><b>8</b> Design and Sampling</a><ul>
+<li class="chapter" data-level="8.1" data-path="design-and-sampling.html"><a href="design-and-sampling.html#power-calculations-with-clusters"><i class="fa fa-check"></i><b>8.1</b> Power Calculations with Clusters</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="chapter" data-level="9" data-path="session-info.html"><a href="session-info.html"><i class="fa fa-check"></i><b>9</b> Session Info</a></li>
+<li class="divider"></li>
+<li><a href="www.liambeisermcgrath.com" target="blank">www.liambeisermcgrath.com</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Impact Evaluation in Practice</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="randomised-assignment" class="section level1">
+<h1><span class="header-section-number">Chapter 3</span> Randomised Assignment</h1>
+<!-- ```{r, warning=FALSE, message=FALSE} -->
+<!-- library(broom) -->
+<!-- library(estimatr) -->
+<!-- library(haven) -->
+<!-- library(kableExtra) -->
+<!-- library(texreg) -->
+<!-- library(tidyverse) -->
+<!-- df <- read_dta("./data/evaluation.dta") -->
+<!-- df_elig <- df %>% -->
+<!--   filter(eligible == 1) -->
+<!-- ``` -->
+<p>Having conducted two impact assessments using potentially biased estimators of the counterfactual in chapter 3 (with conflicting policy recommendations), you decide to go back to the drawing board to rethink how to obtain a more precise estimate of the counterfactual. After further deliberations with your evaluation team, you are convinced that constructing a valid estimate of the counterfactual will require identifying a group of villages that are as similar as possible to the 100 treatment villages in all respects, except that one group took part in HISP and the other did not. Because HISP was rolled out as a pilot, and the 100 treatment villages were selected randomly from among all of the rural villages in the country, you note that the treatment villages should, on average, have the same characteristics as the untreated rural villages in the country. The counterfactual can therefore be estimated in a valid way by measuring the health expenditures of eligible households in rural villages that did not take part in the program.</p>
+<p>Luckily, at the time of the baseline and follow-up surveys, the survey firm collected data on an additional 100 rural villages that were not offered the program. Those 100 villages were also randomly selected from the population of rural villages in the country. Thus the way that the two groups of villages were chosen ensures that they have statistically identical characteristics, except that the 100 treatment villages received HISP and the 100 comparison villages did not. Randomized assignment of the treatment has occurred.</p>
+<p>Given randomized assignment of treatment, you are quite confident that no external factors other than HISP would explain any differences in outcomes between the treatment and comparison villages.</p>
+<p><strong>To validate this assumption, test whether eligible households in the treatment and comparison villages have similar characteristics at baseline.</strong></p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="randomised-assignment.html#cb6-1"></a>df_elig <span class="op">%&gt;%</span></span>
+<span id="cb6-2"><a href="randomised-assignment.html#cb6-2"></a><span class="st">  </span><span class="kw">filter</span>(round <span class="op">==</span><span class="st"> </span><span class="dv">0</span>) <span class="op">%&gt;%</span></span>
+<span id="cb6-3"><a href="randomised-assignment.html#cb6-3"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">select</span>(treatment_locality, locality_identifier,</span>
+<span id="cb6-4"><a href="randomised-assignment.html#cb6-4"></a>                age_hh, age_sp, educ_hh, educ_sp, female_hh, indigenous, </span>
+<span id="cb6-5"><a href="randomised-assignment.html#cb6-5"></a>                hhsize, dirtfloor, bathroom, land, hospital_distance) <span class="op">%&gt;%</span></span>
+<span id="cb6-6"><a href="randomised-assignment.html#cb6-6"></a><span class="st">  </span>tidyr<span class="op">::</span><span class="kw">pivot_longer</span>(<span class="op">-</span><span class="kw">c</span>(<span class="st">&quot;treatment_locality&quot;</span>,<span class="st">&quot;locality_identifier&quot;</span>)) <span class="op">%&gt;%</span></span>
+<span id="cb6-7"><a href="randomised-assignment.html#cb6-7"></a><span class="st">  </span><span class="kw">group_by</span>(name) <span class="op">%&gt;%</span></span>
+<span id="cb6-8"><a href="randomised-assignment.html#cb6-8"></a><span class="st">  </span><span class="kw">do</span>(<span class="kw">tidy</span>(<span class="kw">lm_robust</span>(value <span class="op">~</span><span class="st"> </span>treatment_locality, <span class="dt">data =</span> .))) <span class="op">%&gt;%</span></span>
+<span id="cb6-9"><a href="randomised-assignment.html#cb6-9"></a><span class="st">  </span><span class="kw">filter</span>(term <span class="op">==</span><span class="st"> &quot;treatment_locality&quot;</span>) <span class="op">%&gt;%</span></span>
+<span id="cb6-10"><a href="randomised-assignment.html#cb6-10"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">select</span>(name, estimate, std.error, p.value) <span class="op">%&gt;%</span></span>
+<span id="cb6-11"><a href="randomised-assignment.html#cb6-11"></a><span class="st">  </span><span class="kw">kable</span>()</span></code></pre></div>
+<table>
+<thead>
+<tr>
+<th style="text-align:left;">
+name
+</th>
+<th style="text-align:right;">
+estimate
+</th>
+<th style="text-align:right;">
+std.error
+</th>
+<th style="text-align:right;">
+p.value
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+age_hh
+</td>
+<td style="text-align:right;">
+-0.6354625
+</td>
+<td style="text-align:right;">
+0.3759583
+</td>
+<td style="text-align:right;">
+0.0910361
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+age_sp
+</td>
+<td style="text-align:right;">
+-0.0386302
+</td>
+<td style="text-align:right;">
+0.3120790
+</td>
+<td style="text-align:right;">
+0.9014911
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+bathroom
+</td>
+<td style="text-align:right;">
+0.0149907
+</td>
+<td style="text-align:right;">
+0.0132340
+</td>
+<td style="text-align:right;">
+0.2573724
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+dirtfloor
+</td>
+<td style="text-align:right;">
+-0.0129497
+</td>
+<td style="text-align:right;">
+0.0118744
+</td>
+<td style="text-align:right;">
+0.2755159
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+educ_hh
+</td>
+<td style="text-align:right;">
+0.1607976
+</td>
+<td style="text-align:right;">
+0.0697576
+</td>
+<td style="text-align:right;">
+0.0211978
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+educ_sp
+</td>
+<td style="text-align:right;">
+0.0289107
+</td>
+<td style="text-align:right;">
+0.0670018
+</td>
+<td style="text-align:right;">
+0.6661273
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+female_hh
+</td>
+<td style="text-align:right;">
+-0.0041155
+</td>
+<td style="text-align:right;">
+0.0070493
+</td>
+<td style="text-align:right;">
+0.5593691
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+hhsize
+</td>
+<td style="text-align:right;">
+0.0596953
+</td>
+<td style="text-align:right;">
+0.0530454
+</td>
+<td style="text-align:right;">
+0.2604833
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+hospital_distance
+</td>
+<td style="text-align:right;">
+2.9087631
+</td>
+<td style="text-align:right;">
+1.1323148
+</td>
+<td style="text-align:right;">
+0.0102288
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+indigenous
+</td>
+<td style="text-align:right;">
+0.0091048
+</td>
+<td style="text-align:right;">
+0.0131969
+</td>
+<td style="text-align:right;">
+0.4902756
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+land
+</td>
+<td style="text-align:right;">
+-0.0402168
+</td>
+<td style="text-align:right;">
+0.0704607
+</td>
+<td style="text-align:right;">
+0.5681787
+</td>
+</tr>
+</tbody>
+</table>
+<!-- ```{r} -->
+<!-- lm_robust(health_expenditures ~ treatment_locality, -->
+<!--           data = df_elig %>% filter(round == 0)) -->
+<!-- ``` -->
+<p>You observe that the average characteristics of households in the treatment and comparison villages are in fact very similar. The only statistically significant differences are for the number of years of education of the head of household and distance to hospital, and those differences are small (only 0.16 years, or less than 6 percent of the comparison group’s average years of education, and 2.91 kilometers, or less than 3 percent of the comparison group’s average distance to a hospital). Even with a randomized experiment on a large sample, a small number of differences can be expected because of chance andthe properties of the statistical test. In fact, using standard significance levels of 5 percent we could expect differences in about 5 percent of characteristics to be statistically significant, though we would not expect the magnitude of these differences to be large.</p>
+<p><strong>Estimate the average household health expenditures for eligible households in the treatment and comparison villages for each period. What is the impact of the program?</strong></p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="randomised-assignment.html#cb7-1"></a>out_round0 &lt;-<span class="st"> </span><span class="kw">lm_robust</span>(health_expenditures <span class="op">~</span><span class="st"> </span>treatment_locality,</span>
+<span id="cb7-2"><a href="randomised-assignment.html#cb7-2"></a>                        <span class="dt">data =</span> df_elig <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(round <span class="op">==</span><span class="st"> </span><span class="dv">0</span>),</span>
+<span id="cb7-3"><a href="randomised-assignment.html#cb7-3"></a>                        <span class="dt">clusters =</span> locality_identifier)</span>
+<span id="cb7-4"><a href="randomised-assignment.html#cb7-4"></a>out_round1 &lt;-<span class="st"> </span><span class="kw">lm_robust</span>(health_expenditures <span class="op">~</span><span class="st"> </span>treatment_locality,</span>
+<span id="cb7-5"><a href="randomised-assignment.html#cb7-5"></a>                        <span class="dt">data =</span> df_elig <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(round <span class="op">==</span><span class="st"> </span><span class="dv">1</span>),</span>
+<span id="cb7-6"><a href="randomised-assignment.html#cb7-6"></a>                        <span class="dt">clusters =</span> locality_identifier)</span>
+<span id="cb7-7"><a href="randomised-assignment.html#cb7-7"></a><span class="kw">htmlreg</span>(<span class="kw">list</span>(out_round0, out_round1), <span class="dt">doctype =</span> <span class="ot">FALSE</span>,</span>
+<span id="cb7-8"><a href="randomised-assignment.html#cb7-8"></a>        <span class="dt">custom.coef.map =</span> <span class="kw">list</span>(<span class="st">`</span><span class="dt">treatment_locality</span><span class="st">`</span> =<span class="st"> &quot;Treatment Village&quot;</span>,</span>
+<span id="cb7-9"><a href="randomised-assignment.html#cb7-9"></a>                               <span class="st">`</span><span class="dt">(Intercept)</span><span class="st">`</span> =<span class="st"> &quot;Intercept&quot;</span>),</span>
+<span id="cb7-10"><a href="randomised-assignment.html#cb7-10"></a>        <span class="dt">custom.model.names =</span> <span class="kw">c</span>(<span class="st">&quot;Baseline&quot;</span>, <span class="st">&quot;Follow Up&quot;</span>),</span>
+<span id="cb7-11"><a href="randomised-assignment.html#cb7-11"></a>        <span class="dt">caption =</span> <span class="st">&quot;Health Expenditures by Treatment Locality&quot;</span>)</span></code></pre></div>
+<table class="texreg" style="margin: 10px auto;border-collapse: collapse;border-spacing: 0px;caption-side: bottom;color: #000000;border-top: 2px solid #000000;">
+<caption>
+Health Expenditures by Treatment Locality
+</caption>
+<thead>
+<tr>
+<th style="padding-left: 5px;padding-right: 5px;">
+ 
+</th>
+<th style="padding-left: 5px;padding-right: 5px;">
+Baseline
+</th>
+<th style="padding-left: 5px;padding-right: 5px;">
+Follow Up
+</th>
+</tr>
+</thead>
+<tbody>
+<tr style="border-top: 1px solid #000000;">
+<td style="padding-left: 5px;padding-right: 5px;">
+Treatment Village
+</td>
+<td style="padding-left: 5px;padding-right: 5px;">
+-0.08
+</td>
+<td style="padding-left: 5px;padding-right: 5px;">
+-10.14<sup>*</sup>
+</td>
+</tr>
+<tr>
+<td style="padding-left: 5px;padding-right: 5px;">
+ 
+</td>
+<td style="padding-left: 5px;padding-right: 5px;">
+[-0.51; 0.34]
+</td>
+<td style="padding-left: 5px;padding-right: 5px;">
+[-10.93; -9.35]
+</td>
+</tr>
+<tr>
+<td style="padding-left: 5px;padding-right: 5px;">
+Intercept
+</td>
+<td style="padding-left: 5px;padding-right: 5px;">
+14.57<sup>*</sup>
+</td>
+<td style="padding-left: 5px;padding-right: 5px;">
+17.98<sup>*</sup>
+</td>
+</tr>
+<tr>
+<td style="padding-left: 5px;padding-right: 5px;">
+ 
+</td>
+<td style="padding-left: 5px;padding-right: 5px;">
+[14.26; 14.89]
+</td>
+<td style="padding-left: 5px;padding-right: 5px;">
+[ 17.36; 18.60]
+</td>
+</tr>
+<tr style="border-top: 1px solid #000000;">
+<td style="padding-left: 5px;padding-right: 5px;">
+R<sup>2</sup>
+</td>
+<td style="padding-left: 5px;padding-right: 5px;">
+0.00
+</td>
+<td style="padding-left: 5px;padding-right: 5px;">
+0.30
+</td>
+</tr>
+<tr>
+<td style="padding-left: 5px;padding-right: 5px;">
+Adj. R<sup>2</sup>
+</td>
+<td style="padding-left: 5px;padding-right: 5px;">
+-0.00
+</td>
+<td style="padding-left: 5px;padding-right: 5px;">
+0.30
+</td>
+</tr>
+<tr>
+<td style="padding-left: 5px;padding-right: 5px;">
+Num. obs.
+</td>
+<td style="padding-left: 5px;padding-right: 5px;">
+5628
+</td>
+<td style="padding-left: 5px;padding-right: 5px;">
+5629
+</td>
+</tr>
+<tr>
+<td style="padding-left: 5px;padding-right: 5px;">
+RMSE
+</td>
+<td style="padding-left: 5px;padding-right: 5px;">
+4.30
+</td>
+<td style="padding-left: 5px;padding-right: 5px;">
+7.73
+</td>
+</tr>
+<tr style="border-bottom: 2px solid #000000;">
+<td style="padding-left: 5px;padding-right: 5px;">
+N Clusters
+</td>
+<td style="padding-left: 5px;padding-right: 5px;">
+197
+</td>
+<td style="padding-left: 5px;padding-right: 5px;">
+197
+</td>
+</tr>
+</tbody>
+<tfoot>
+<tr>
+<td style="font-size: 0.8em;" colspan="3">
+<sup>*</sup> Null hypothesis value outside the confidence interval.
+</td>
+</tr>
+</tfoot>
+</table>
+<p>With the validity of the comparison group established, you can now estimate the counterfactual as the average health expenditures of eligible households in the 100 comparison villages. Table X shows the average household health expenditures for eligible households in the treatment and comparison villages. You note that at baseline, the average household health expenditures in the treatment and comparison groups are not sta- tistically different, as should be expected under randomized assignment.</p>
+<p>Given that you now have a valid comparison group, you can find the impact of the HISP simply by taking the difference between the average out-of-pocket health expenditures of households in the treatment villages and randomly assigned comparison villages in the follow-up period. The impact is a reduction of US$10.14 over two years.</p>
+<!-- ```{r} -->
+<!-- df_elig %>% -->
+<!--   group_by(round) %>% -->
+<!--   do(tidy(lm_robust(health_expenditures ~ treatment_locality, data = ., -->
+<!--                         clusters = locality_identifier))) -->
+<!-- ``` -->
+<p><strong>Re-estimate using a multivariate regression analysis that controls for the other observable characteristics of the sample households. How does your impact estimate change?</strong></p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="randomised-assignment.html#cb8-1"></a>out_round1_nocov &lt;-<span class="st"> </span><span class="kw">lm_robust</span>(health_expenditures <span class="op">~</span><span class="st"> </span>treatment_locality,</span>
+<span id="cb8-2"><a href="randomised-assignment.html#cb8-2"></a>                        <span class="dt">data =</span> df_elig <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(round <span class="op">==</span><span class="st"> </span><span class="dv">1</span>),</span>
+<span id="cb8-3"><a href="randomised-assignment.html#cb8-3"></a>                        <span class="dt">clusters =</span> locality_identifier)</span>
+<span id="cb8-4"><a href="randomised-assignment.html#cb8-4"></a>out_round1_wcov &lt;-<span class="st"> </span><span class="kw">lm_robust</span>(health_expenditures <span class="op">~</span><span class="st"> </span>treatment_locality <span class="op">+</span></span>
+<span id="cb8-5"><a href="randomised-assignment.html#cb8-5"></a><span class="st">                               </span>age_hh <span class="op">+</span><span class="st"> </span>age_sp <span class="op">+</span><span class="st"> </span>educ_hh <span class="op">+</span><span class="st"> </span>educ_sp <span class="op">+</span><span class="st"> </span></span>
+<span id="cb8-6"><a href="randomised-assignment.html#cb8-6"></a><span class="st">                               </span>female_hh <span class="op">+</span><span class="st"> </span>indigenous <span class="op">+</span><span class="st"> </span>hhsize <span class="op">+</span><span class="st"> </span>dirtfloor <span class="op">+</span><span class="st"> </span></span>
+<span id="cb8-7"><a href="randomised-assignment.html#cb8-7"></a><span class="st">                               </span>bathroom <span class="op">+</span><span class="st"> </span>land <span class="op">+</span><span class="st"> </span>hospital_distance,</span>
+<span id="cb8-8"><a href="randomised-assignment.html#cb8-8"></a>                        <span class="dt">data =</span> df_elig <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(round <span class="op">==</span><span class="st"> </span><span class="dv">1</span>),</span>
+<span id="cb8-9"><a href="randomised-assignment.html#cb8-9"></a>                        <span class="dt">clusters =</span> locality_identifier)</span>
+<span id="cb8-10"><a href="randomised-assignment.html#cb8-10"></a><span class="kw">htmlreg</span>(<span class="kw">list</span>(out_round1_nocov, out_round1_wcov), <span class="dt">doctype =</span> <span class="ot">FALSE</span>,</span>
+<span id="cb8-11"><a href="randomised-assignment.html#cb8-11"></a>        <span class="dt">custom.coef.map =</span> <span class="kw">list</span>(<span class="st">`</span><span class="dt">treatment_locality</span><span class="st">`</span> =<span class="st"> &quot;Treatment Village&quot;</span>,</span>
+<span id="cb8-12"><a href="randomised-assignment.html#cb8-12"></a>                               <span class="st">`</span><span class="dt">(Intercept)</span><span class="st">`</span> =<span class="st"> &quot;Intercept&quot;</span>),</span>
+<span id="cb8-13"><a href="randomised-assignment.html#cb8-13"></a>        <span class="dt">custom.model.names =</span> <span class="kw">c</span>(<span class="st">&quot;No Covariate Adjust.&quot;</span>, <span class="st">&quot;With Covariate Adjust.&quot;</span>),</span>
+<span id="cb8-14"><a href="randomised-assignment.html#cb8-14"></a>        <span class="dt">caption =</span> <span class="st">&quot;Evaluating HISP: Randomized Assignment with Regression Analysis&quot;</span>)</span></code></pre></div>
+<table class="texreg" style="margin: 10px auto;border-collapse: collapse;border-spacing: 0px;caption-side: bottom;color: #000000;border-top: 2px solid #000000;">
+<caption>
+Evaluating HISP: Randomized Assignment with Regression Analysis
+</caption>
+<thead>
+<tr>
+<th style="padding-left: 5px;padding-right: 5px;">
+ 
+</th>
+<th style="padding-left: 5px;padding-right: 5px;">
+No Covariate Adjust.
+</th>
+<th style="padding-left: 5px;padding-right: 5px;">
+With Covariate Adjust.
+</th>
+</tr>
+</thead>
+<tbody>
+<tr style="border-top: 1px solid #000000;">
+<td style="padding-left: 5px;padding-right: 5px;">
+Treatment Village
+</td>
+<td style="padding-left: 5px;padding-right: 5px;">
+-10.14<sup>*</sup>
+</td>
+<td style="padding-left: 5px;padding-right: 5px;">
+-10.01<sup>*</sup>
+</td>
+</tr>
+<tr>
+<td style="padding-left: 5px;padding-right: 5px;">
+ 
+</td>
+<td style="padding-left: 5px;padding-right: 5px;">
+[-10.93; -9.35]
+</td>
+<td style="padding-left: 5px;padding-right: 5px;">
+[-10.70; -9.32]
+</td>
+</tr>
+<tr>
+<td style="padding-left: 5px;padding-right: 5px;">
+Intercept
+</td>
+<td style="padding-left: 5px;padding-right: 5px;">
+17.98<sup>*</sup>
+</td>
+<td style="padding-left: 5px;padding-right: 5px;">
+27.57<sup>*</sup>
+</td>
+</tr>
+<tr>
+<td style="padding-left: 5px;padding-right: 5px;">
+ 
+</td>
+<td style="padding-left: 5px;padding-right: 5px;">
+[ 17.36; 18.60]
+</td>
+<td style="padding-left: 5px;padding-right: 5px;">
+[ 25.83; 29.30]
+</td>
+</tr>
+<tr style="border-top: 1px solid #000000;">
+<td style="padding-left: 5px;padding-right: 5px;">
+R<sup>2</sup>
+</td>
+<td style="padding-left: 5px;padding-right: 5px;">
+0.30
+</td>
+<td style="padding-left: 5px;padding-right: 5px;">
+0.43
+</td>
+</tr>
+<tr>
+<td style="padding-left: 5px;padding-right: 5px;">
+Adj. R<sup>2</sup>
+</td>
+<td style="padding-left: 5px;padding-right: 5px;">
+0.30
+</td>
+<td style="padding-left: 5px;padding-right: 5px;">
+0.43
+</td>
+</tr>
+<tr>
+<td style="padding-left: 5px;padding-right: 5px;">
+Num. obs.
+</td>
+<td style="padding-left: 5px;padding-right: 5px;">
+5629
+</td>
+<td style="padding-left: 5px;padding-right: 5px;">
+5629
+</td>
+</tr>
+<tr>
+<td style="padding-left: 5px;padding-right: 5px;">
+RMSE
+</td>
+<td style="padding-left: 5px;padding-right: 5px;">
+7.73
+</td>
+<td style="padding-left: 5px;padding-right: 5px;">
+6.98
+</td>
+</tr>
+<tr style="border-bottom: 2px solid #000000;">
+<td style="padding-left: 5px;padding-right: 5px;">
+N Clusters
+</td>
+<td style="padding-left: 5px;padding-right: 5px;">
+197
+</td>
+<td style="padding-left: 5px;padding-right: 5px;">
+197
+</td>
+</tr>
+</tbody>
+<tfoot>
+<tr>
+<td style="font-size: 0.8em;" colspan="3">
+<sup>*</sup> Null hypothesis value outside the confidence interval.
+</td>
+</tr>
+</tfoot>
+</table>
+<p>Replicating this result through a linear regression analysis yields the same result, as shown in Table X. Finally, you run a multivariate regression analysis that controls for some other observable characteristics of the sample house- holds, and you find that the program has reduced the expenditures of the enrolled households by US$10.01 over two years, which is nearly identi- cal to the linear regression result.</p>
+<p>With randomized assignment, we can be confident that no factors are present that are systematically different between the treatment and comparison groups that might also explain the difference in health expenditures. Both sets of villages started off with very similar average characteristics and have been exposed to the same set of national policies and programs during the two years of treatment. Thus the only plausible reason that poor households in treatment communities have lower expenditures than households in compari- son villages is that the first group received the health insurance program and the other group did not.</p>
+<p><strong>Why is the impact estimate derived using a multivariate linear regression basically unchanged when controlling for other factors, compared to the simple linear regression and comparison of means?</strong></p>
+<p>Because the treatment was assigned randomly, the comparison and treatment groups should have identical characteristics and be exposed to the same external factors over time. The only difference between the two groups is that the treatment group received HISP. Because of the randomized assignment process, the characteristics (controls) of the treatment and comparison group are unrelated to treatment status, so controlling for additional characteristics in the multivariate linear regression is not expected to change the estimated impact by much.</p>
+<p><strong>Based on the impact estimated with the randomized assignment method, should the HISP be scaled up nationally?</strong></p>
+<p>Yes, based on this result, the HISP should be scaled up nationally because it decreased health expenditures by more than the $10 threshold level.</p>
+
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="causal-inference-and-counterfactuals.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="instrumental-variables.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["iep_solutions.pdf", "iep_solutions.epub"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

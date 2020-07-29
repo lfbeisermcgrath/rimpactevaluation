@@ -1,0 +1,743 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 4 Instrumental Variables | Impact Evaluation in Practice</title>
+  <meta name="description" content="Solutions for Impact Evaluation in Practice (2nd Edition)." />
+  <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 4 Instrumental Variables | Impact Evaluation in Practice" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="Solutions for Impact Evaluation in Practice (2nd Edition)." />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 4 Instrumental Variables | Impact Evaluation in Practice" />
+  
+  <meta name="twitter:description" content="Solutions for Impact Evaluation in Practice (2nd Edition)." />
+  
+
+<meta name="author" content="Liam F. Beiser-McGrath" />
+<meta name="author" content="Lecturer (Assistant Professor) in Politics, Royal Holloway, University of London" />
+<meta name="author" content="www.liambeisermcgrath.com" />
+<meta name="author" content="liam@liambeisermcgrath.com" />
+
+
+<meta name="date" content="2020-07-29" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="randomised-assignment.html"/>
+<link rel="next" href="regression-discontinuity-designs.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+
+
+<style type="text/css">
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Impact Evaluation in Practice Solutions</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preamble</a></li>
+<li class="chapter" data-level="" data-path="about-the-author.html"><a href="about-the-author.html"><i class="fa fa-check"></i>About the Author</a></li>
+<li class="chapter" data-level="1" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>1</b> Introduction</a><ul>
+<li class="chapter" data-level="1.1" data-path="intro.html"><a href="intro.html#variable-definitions"><i class="fa fa-check"></i><b>1.1</b> Variable Definitions</a><ul>
+<li class="chapter" data-level="1.1.1" data-path="intro.html"><a href="intro.html#outcome-variable"><i class="fa fa-check"></i><b>1.1.1</b> Outcome Variable</a></li>
+<li class="chapter" data-level="1.1.2" data-path="intro.html"><a href="intro.html#control-variables"><i class="fa fa-check"></i><b>1.1.2</b> Control Variables</a></li>
+<li class="chapter" data-level="1.1.3" data-path="intro.html"><a href="intro.html#other-variables"><i class="fa fa-check"></i><b>1.1.3</b> Other Variables</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="causal-inference-and-counterfactuals.html"><a href="causal-inference-and-counterfactuals.html"><i class="fa fa-check"></i><b>2</b> Causal Inference and Counterfactuals</a><ul>
+<li class="chapter" data-level="2.1" data-path="causal-inference-and-counterfactuals.html"><a href="causal-inference-and-counterfactuals.html#before-after-designs"><i class="fa fa-check"></i><b>2.1</b> Before-After Designs</a></li>
+<li class="chapter" data-level="2.2" data-path="causal-inference-and-counterfactuals.html"><a href="causal-inference-and-counterfactuals.html#enrolled-vs.-non-enrolled"><i class="fa fa-check"></i><b>2.2</b> Enrolled vs. Non-Enrolled</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="randomised-assignment.html"><a href="randomised-assignment.html"><i class="fa fa-check"></i><b>3</b> Randomised Assignment</a></li>
+<li class="chapter" data-level="4" data-path="instrumental-variables.html"><a href="instrumental-variables.html"><i class="fa fa-check"></i><b>4</b> Instrumental Variables</a></li>
+<li class="chapter" data-level="5" data-path="regression-discontinuity-designs.html"><a href="regression-discontinuity-designs.html"><i class="fa fa-check"></i><b>5</b> Regression Discontinuity Designs</a></li>
+<li class="chapter" data-level="6" data-path="difference-in-differences.html"><a href="difference-in-differences.html"><i class="fa fa-check"></i><b>6</b> Difference-in-Differences</a></li>
+<li class="chapter" data-level="7" data-path="matching.html"><a href="matching.html"><i class="fa fa-check"></i><b>7</b> Matching</a></li>
+<li class="chapter" data-level="8" data-path="design-and-sampling.html"><a href="design-and-sampling.html"><i class="fa fa-check"></i><b>8</b> Design and Sampling</a><ul>
+<li class="chapter" data-level="8.1" data-path="design-and-sampling.html"><a href="design-and-sampling.html#power-calculations-with-clusters"><i class="fa fa-check"></i><b>8.1</b> Power Calculations with Clusters</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="chapter" data-level="9" data-path="session-info.html"><a href="session-info.html"><i class="fa fa-check"></i><b>9</b> Session Info</a></li>
+<li class="divider"></li>
+<li><a href="www.liambeisermcgrath.com" target="blank">www.liambeisermcgrath.com</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Impact Evaluation in Practice</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="instrumental-variables" class="section level1">
+<h1><span class="header-section-number">Chapter 4</span> Instrumental Variables</h1>
+<!-- ```{r, warning=FALSE, message=FALSE} -->
+<!-- library(broom) -->
+<!-- library(estimatr) -->
+<!-- library(haven) -->
+<!-- library(kableExtra) -->
+<!-- library(MatchIt) -->
+<!-- library(modelsummary) -->
+<!-- library(texreg) -->
+<!-- library(tidyverse) -->
+<!-- df <- read_dta("./data/evaluation.dta") -->
+<!-- ``` -->
+<!-- ```{r setup, include=FALSE} -->
+<!-- # Register an inline hook: -->
+<!-- knitr::knit_hooks$set(inline = function(x) { -->
+<!--   if (is.numeric(x)) { -->
+<!--     x <- sprintf("%1.2f", x) -->
+<!--   paste(x, collapse = ", ") -->
+<!--   } else { -->
+<!--     x -->
+<!--   } -->
+<!-- }) -->
+<!-- ``` -->
+<p>Let us now try using the randomized promotion method to evaluate the impact of the Health Insurance Subsidy Program (HISP). Assume that the ministry of health makes an executive decision that the health insurance subsidy should be made available immediately to any household that wants to enroll. You note that this is a different scenario than the randomized assignment case we have considered so far. However, you know that realistically this national scale-up will be incremental over time, so you reach an agreement to try and accelerate enrollment in a random subset of villages through a promotion campaign. In a random subsample of villages (indicated by <code>promotion_locality</code>), you undertake an intensive promotion effort that includes communication and social marketing aimed at increasing awareness of HISP. The promotion activities are carefully designed to avoid content that may inadvertently encourage changes in other health-related behaviors, since this would invalidate the promotion as an instrumental variable (IV). Instead, the promotion concentrates exclusively on boosting enrollment in HISP.</p>
+<p><strong>What was the effect of the promotion campaign upon enrollment?</strong></p>
+<p><em>Note you should use the variable </em><code>enrolled_rp</code> <em>for this question</em></p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="instrumental-variables.html#cb9-1"></a>m_enroll &lt;-<span class="st"> </span><span class="kw">lm_robust</span>(enrolled_rp <span class="op">~</span><span class="st"> </span>promotion_locality,</span>
+<span id="cb9-2"><a href="instrumental-variables.html#cb9-2"></a>                      <span class="dt">clusters =</span> locality_identifier,</span>
+<span id="cb9-3"><a href="instrumental-variables.html#cb9-3"></a>                      <span class="dt">data =</span> df <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(round <span class="op">==</span><span class="st"> </span><span class="dv">1</span>))</span>
+<span id="cb9-4"><a href="instrumental-variables.html#cb9-4"></a></span>
+<span id="cb9-5"><a href="instrumental-variables.html#cb9-5"></a><span class="kw">htmlreg</span>(m_enroll, <span class="dt">doctype =</span> <span class="ot">FALSE</span>,</span>
+<span id="cb9-6"><a href="instrumental-variables.html#cb9-6"></a>        <span class="dt">custom.coef.map =</span> <span class="kw">list</span>(<span class="st">`</span><span class="dt">promotion_locality</span><span class="st">`</span> =<span class="st"> &quot;Promotion Locality&quot;</span>,</span>
+<span id="cb9-7"><a href="instrumental-variables.html#cb9-7"></a>                               <span class="st">`</span><span class="dt">(Intercept)</span><span class="st">`</span> =<span class="st"> &quot;Intercept&quot;</span>),</span>
+<span id="cb9-8"><a href="instrumental-variables.html#cb9-8"></a>        <span class="dt">caption =</span> <span class="st">&quot;Randomized Promotion Comparison of Enrollment Rate in HISP&quot;</span>,</span>
+<span id="cb9-9"><a href="instrumental-variables.html#cb9-9"></a>        <span class="dt">custom.model.names =</span> <span class="st">&quot;Enrollment Rate&quot;</span>)</span></code></pre></div>
+<table class="texreg" style="margin: 10px auto;border-collapse: collapse;border-spacing: 0px;caption-side: bottom;color: #000000;border-top: 2px solid #000000;">
+<caption>
+Randomized Promotion Comparison of Enrollment Rate in HISP
+</caption>
+<thead>
+<tr>
+<th style="padding-left: 5px;padding-right: 5px;">
+ 
+</th>
+<th style="padding-left: 5px;padding-right: 5px;">
+Enrollment Rate
+</th>
+</tr>
+</thead>
+<tbody>
+<tr style="border-top: 1px solid #000000;">
+<td style="padding-left: 5px;padding-right: 5px;">
+Promotion Locality
+</td>
+<td style="padding-left: 5px;padding-right: 5px;">
+0.41<sup>*</sup>
+</td>
+</tr>
+<tr>
+<td style="padding-left: 5px;padding-right: 5px;">
+ 
+</td>
+<td style="padding-left: 5px;padding-right: 5px;">
+[0.34; 0.48]
+</td>
+</tr>
+<tr>
+<td style="padding-left: 5px;padding-right: 5px;">
+Intercept
+</td>
+<td style="padding-left: 5px;padding-right: 5px;">
+0.08<sup>*</sup>
+</td>
+</tr>
+<tr>
+<td style="padding-left: 5px;padding-right: 5px;">
+ 
+</td>
+<td style="padding-left: 5px;padding-right: 5px;">
+[0.04; 0.13]
+</td>
+</tr>
+<tr style="border-top: 1px solid #000000;">
+<td style="padding-left: 5px;padding-right: 5px;">
+R<sup>2</sup>
+</td>
+<td style="padding-left: 5px;padding-right: 5px;">
+0.20
+</td>
+</tr>
+<tr>
+<td style="padding-left: 5px;padding-right: 5px;">
+Adj. R<sup>2</sup>
+</td>
+<td style="padding-left: 5px;padding-right: 5px;">
+0.20
+</td>
+</tr>
+<tr>
+<td style="padding-left: 5px;padding-right: 5px;">
+Num. obs.
+</td>
+<td style="padding-left: 5px;padding-right: 5px;">
+9914
+</td>
+</tr>
+<tr>
+<td style="padding-left: 5px;padding-right: 5px;">
+RMSE
+</td>
+<td style="padding-left: 5px;padding-right: 5px;">
+0.41
+</td>
+</tr>
+<tr style="border-bottom: 2px solid #000000;">
+<td style="padding-left: 5px;padding-right: 5px;">
+N Clusters
+</td>
+<td style="padding-left: 5px;padding-right: 5px;">
+200
+</td>
+</tr>
+</tbody>
+<tfoot>
+<tr>
+<td style="font-size: 0.8em;" colspan="2">
+<sup>*</sup> 0 outside the confidence interval.
+</td>
+</tr>
+</tfoot>
+</table>
+<p>After two years of promotion and program implementation, you find that 0.49 percent of households in villages that were randomly assigned to the promotion have enrolled in the program, while only 0.08 percent of households in non-promoted villages have enrolled.</p>
+<p>Because the promoted and nonpromoted villages were assigned at random, you know that the average characteristics of the two groups should be the same in the absence of the promotion. You can verify that assumption by comparing the baseline health expenditures (as well as any other characteristics) of the two populations.</p>
+<p><strong>Compare baseline healthcare expenditures based upon assignment to promotion.</strong></p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="instrumental-variables.html#cb10-1"></a>m_base_health &lt;-<span class="st"> </span><span class="kw">lm_robust</span>(health_expenditures <span class="op">~</span><span class="st"> </span>promotion_locality,</span>
+<span id="cb10-2"><a href="instrumental-variables.html#cb10-2"></a>                           <span class="dt">clusters =</span> locality_identifier,</span>
+<span id="cb10-3"><a href="instrumental-variables.html#cb10-3"></a>                           <span class="dt">data =</span> df <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(round <span class="op">==</span><span class="st"> </span><span class="dv">0</span>)</span>
+<span id="cb10-4"><a href="instrumental-variables.html#cb10-4"></a>                           )</span>
+<span id="cb10-5"><a href="instrumental-variables.html#cb10-5"></a><span class="kw">htmlreg</span>(m_base_health, <span class="dt">doctype =</span> <span class="ot">FALSE</span>,</span>
+<span id="cb10-6"><a href="instrumental-variables.html#cb10-6"></a>        <span class="dt">custom.coef.map =</span> <span class="kw">list</span>(<span class="st">`</span><span class="dt">promotion_locality</span><span class="st">`</span> =<span class="st"> &quot;Promotion Locality&quot;</span>,</span>
+<span id="cb10-7"><a href="instrumental-variables.html#cb10-7"></a>                               <span class="st">`</span><span class="dt">(Intercept)</span><span class="st">`</span> =<span class="st"> &quot;Intercept&quot;</span>),</span>
+<span id="cb10-8"><a href="instrumental-variables.html#cb10-8"></a>        <span class="dt">caption =</span> <span class="st">&quot;Randomized Promotion Comparison of Mean Household Expenditures at Baseline&quot;</span>,</span>
+<span id="cb10-9"><a href="instrumental-variables.html#cb10-9"></a>        <span class="dt">custom.model.names =</span> <span class="st">&quot;Household Expenditures at Baseline&quot;</span>)</span></code></pre></div>
+<table class="texreg" style="margin: 10px auto;border-collapse: collapse;border-spacing: 0px;caption-side: bottom;color: #000000;border-top: 2px solid #000000;">
+<caption>
+Randomized Promotion Comparison of Mean Household Expenditures at Baseline
+</caption>
+<thead>
+<tr>
+<th style="padding-left: 5px;padding-right: 5px;">
+ 
+</th>
+<th style="padding-left: 5px;padding-right: 5px;">
+Household Expenditures at Baseline
+</th>
+</tr>
+</thead>
+<tbody>
+<tr style="border-top: 1px solid #000000;">
+<td style="padding-left: 5px;padding-right: 5px;">
+Promotion Locality
+</td>
+<td style="padding-left: 5px;padding-right: 5px;">
+-0.05
+</td>
+</tr>
+<tr>
+<td style="padding-left: 5px;padding-right: 5px;">
+ 
+</td>
+<td style="padding-left: 5px;padding-right: 5px;">
+[-0.62; 0.51]
+</td>
+</tr>
+<tr>
+<td style="padding-left: 5px;padding-right: 5px;">
+Intercept
+</td>
+<td style="padding-left: 5px;padding-right: 5px;">
+17.24<sup>*</sup>
+</td>
+</tr>
+<tr>
+<td style="padding-left: 5px;padding-right: 5px;">
+ 
+</td>
+<td style="padding-left: 5px;padding-right: 5px;">
+[16.76; 17.71]
+</td>
+</tr>
+<tr style="border-top: 1px solid #000000;">
+<td style="padding-left: 5px;padding-right: 5px;">
+R<sup>2</sup>
+</td>
+<td style="padding-left: 5px;padding-right: 5px;">
+0.00
+</td>
+</tr>
+<tr>
+<td style="padding-left: 5px;padding-right: 5px;">
+Adj. R<sup>2</sup>
+</td>
+<td style="padding-left: 5px;padding-right: 5px;">
+-0.00
+</td>
+</tr>
+<tr>
+<td style="padding-left: 5px;padding-right: 5px;">
+Num. obs.
+</td>
+<td style="padding-left: 5px;padding-right: 5px;">
+9913
+</td>
+</tr>
+<tr>
+<td style="padding-left: 5px;padding-right: 5px;">
+RMSE
+</td>
+<td style="padding-left: 5px;padding-right: 5px;">
+5.59
+</td>
+</tr>
+<tr style="border-bottom: 2px solid #000000;">
+<td style="padding-left: 5px;padding-right: 5px;">
+N Clusters
+</td>
+<td style="padding-left: 5px;padding-right: 5px;">
+200
+</td>
+</tr>
+</tbody>
+<tfoot>
+<tr>
+<td style="font-size: 0.8em;" colspan="2">
+<sup>*</sup> 0 outside the confidence interval.
+</td>
+</tr>
+</tfoot>
+</table>
+<p><strong>Estimate the difference in health expenditures by assignment to promotion, in the post-treatment period</strong></p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="instrumental-variables.html#cb11-1"></a>m_post_health &lt;-<span class="st"> </span><span class="kw">lm_robust</span>(health_expenditures <span class="op">~</span><span class="st"> </span>promotion_locality,</span>
+<span id="cb11-2"><a href="instrumental-variables.html#cb11-2"></a>                           <span class="dt">clusters =</span> locality_identifier,</span>
+<span id="cb11-3"><a href="instrumental-variables.html#cb11-3"></a>                           <span class="dt">data =</span> df <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(round <span class="op">==</span><span class="st"> </span><span class="dv">1</span>)</span>
+<span id="cb11-4"><a href="instrumental-variables.html#cb11-4"></a>                           )</span>
+<span id="cb11-5"><a href="instrumental-variables.html#cb11-5"></a><span class="kw">htmlreg</span>(m_post_health, <span class="dt">doctype =</span> <span class="ot">FALSE</span>,</span>
+<span id="cb11-6"><a href="instrumental-variables.html#cb11-6"></a>        <span class="dt">custom.coef.map =</span> <span class="kw">list</span>(<span class="st">`</span><span class="dt">promotion_locality</span><span class="st">`</span> =<span class="st"> &quot;Promotion Locality&quot;</span>,</span>
+<span id="cb11-7"><a href="instrumental-variables.html#cb11-7"></a>                               <span class="st">`</span><span class="dt">(Intercept)</span><span class="st">`</span> =<span class="st"> &quot;Intercept&quot;</span>),</span>
+<span id="cb11-8"><a href="instrumental-variables.html#cb11-8"></a>        <span class="dt">caption =</span> <span class="st">&quot;Randomized Promotion Comparison of Mean Household Expenditures at Follow-Up&quot;</span>,</span>
+<span id="cb11-9"><a href="instrumental-variables.html#cb11-9"></a>        <span class="dt">custom.model.names =</span> <span class="st">&quot;Household Expenditures at Follow-Up&quot;</span>)</span></code></pre></div>
+<table class="texreg" style="margin: 10px auto;border-collapse: collapse;border-spacing: 0px;caption-side: bottom;color: #000000;border-top: 2px solid #000000;">
+<caption>
+Randomized Promotion Comparison of Mean Household Expenditures at Follow-Up
+</caption>
+<thead>
+<tr>
+<th style="padding-left: 5px;padding-right: 5px;">
+ 
+</th>
+<th style="padding-left: 5px;padding-right: 5px;">
+Household Expenditures at Follow-Up
+</th>
+</tr>
+</thead>
+<tbody>
+<tr style="border-top: 1px solid #000000;">
+<td style="padding-left: 5px;padding-right: 5px;">
+Promotion Locality
+</td>
+<td style="padding-left: 5px;padding-right: 5px;">
+-3.87<sup>*</sup>
+</td>
+</tr>
+<tr>
+<td style="padding-left: 5px;padding-right: 5px;">
+ 
+</td>
+<td style="padding-left: 5px;padding-right: 5px;">
+[-5.14; -2.61]
+</td>
+</tr>
+<tr>
+<td style="padding-left: 5px;padding-right: 5px;">
+Intercept
+</td>
+<td style="padding-left: 5px;padding-right: 5px;">
+18.85<sup>*</sup>
+</td>
+</tr>
+<tr>
+<td style="padding-left: 5px;padding-right: 5px;">
+ 
+</td>
+<td style="padding-left: 5px;padding-right: 5px;">
+[17.87; 19.82]
+</td>
+</tr>
+<tr style="border-top: 1px solid #000000;">
+<td style="padding-left: 5px;padding-right: 5px;">
+R<sup>2</sup>
+</td>
+<td style="padding-left: 5px;padding-right: 5px;">
+0.03
+</td>
+</tr>
+<tr>
+<td style="padding-left: 5px;padding-right: 5px;">
+Adj. R<sup>2</sup>
+</td>
+<td style="padding-left: 5px;padding-right: 5px;">
+0.03
+</td>
+</tr>
+<tr>
+<td style="padding-left: 5px;padding-right: 5px;">
+Num. obs.
+</td>
+<td style="padding-left: 5px;padding-right: 5px;">
+9914
+</td>
+</tr>
+<tr>
+<td style="padding-left: 5px;padding-right: 5px;">
+RMSE
+</td>
+<td style="padding-left: 5px;padding-right: 5px;">
+11.73
+</td>
+</tr>
+<tr style="border-bottom: 2px solid #000000;">
+<td style="padding-left: 5px;padding-right: 5px;">
+N Clusters
+</td>
+<td style="padding-left: 5px;padding-right: 5px;">
+200
+</td>
+</tr>
+</tbody>
+<tfoot>
+<tr>
+<td style="font-size: 0.8em;" colspan="2">
+<sup>*</sup> 0 outside the confidence interval.
+</td>
+</tr>
+</tfoot>
+</table>
+<p><strong>Using this health expenditure estimate and the estimated proportion of “compliers”, estimate the LATE/CACE</strong></p>
+<p>After two years of program implementation, you observe that the average health expenditure in the promoted villages is 14.97 USD, compared with 18.85 USD in nonpromoted areas (a difference of -3.87 USD). However, because the only difference between the promoted and nonpromoted villages is that enrollment in the program is higher in the promoted villages (thanks to the promotion), this difference of -3.87 USD in health expenditures must be due to the additional 0.41 percent of households that enrolled in the promoted villages because of the promotion. Therefore, we need to adjust the difference in health expenditures to be able to find the impact of the program on the Enroll-if-promoted. To do this, we divide the intention-to-treat estimate— that is, the straight difference between the promoted and nonpromoted groups—by the percentage of Enroll-if-promoted: -3.87 / 0.41 = -9.50.</p>
+<p>Your colleague, an econometrician who suggests using the randomized promotion as an IV, then estimates the impact of the program through a two-stage least-squares procedure.</p>
+<p><strong>Conduct this estimation with and without covariate adjustment. Interpret.</strong></p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="instrumental-variables.html#cb12-1"></a>m_cace &lt;-<span class="st"> </span><span class="kw">iv_robust</span>(health_expenditures <span class="op">~</span><span class="st"> </span>enrolled_rp <span class="op">|</span></span>
+<span id="cb12-2"><a href="instrumental-variables.html#cb12-2"></a><span class="st">                      </span>promotion_locality,</span>
+<span id="cb12-3"><a href="instrumental-variables.html#cb12-3"></a>                    <span class="dt">clusters =</span> locality_identifier,</span>
+<span id="cb12-4"><a href="instrumental-variables.html#cb12-4"></a>                    <span class="dt">data =</span> df <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(round <span class="op">==</span><span class="st"> </span><span class="dv">1</span>))</span>
+<span id="cb12-5"><a href="instrumental-variables.html#cb12-5"></a>m_cace_wcov &lt;-<span class="st"> </span><span class="kw">iv_robust</span>(health_expenditures <span class="op">~</span><span class="st"> </span>enrolled_rp <span class="op">+</span><span class="st"> </span></span>
+<span id="cb12-6"><a href="instrumental-variables.html#cb12-6"></a><span class="st">                           </span>age_hh <span class="op">+</span><span class="st"> </span>age_sp <span class="op">+</span><span class="st"> </span>educ_hh <span class="op">+</span><span class="st"> </span>educ_sp <span class="op">+</span><span class="st"> </span></span>
+<span id="cb12-7"><a href="instrumental-variables.html#cb12-7"></a><span class="st">                           </span>female_hh <span class="op">+</span><span class="st"> </span>indigenous <span class="op">+</span><span class="st"> </span>hhsize <span class="op">+</span><span class="st"> </span>dirtfloor <span class="op">+</span><span class="st"> </span></span>
+<span id="cb12-8"><a href="instrumental-variables.html#cb12-8"></a><span class="st">                           </span>bathroom <span class="op">+</span><span class="st"> </span>land <span class="op">+</span><span class="st"> </span>hospital_distance <span class="op">|</span><span class="st"> </span></span>
+<span id="cb12-9"><a href="instrumental-variables.html#cb12-9"></a><span class="st">                           </span>promotion_locality <span class="op">+</span><span class="st"> </span></span>
+<span id="cb12-10"><a href="instrumental-variables.html#cb12-10"></a><span class="st">                           </span>age_hh <span class="op">+</span><span class="st"> </span>age_sp <span class="op">+</span><span class="st"> </span>educ_hh <span class="op">+</span><span class="st"> </span>educ_sp <span class="op">+</span><span class="st"> </span></span>
+<span id="cb12-11"><a href="instrumental-variables.html#cb12-11"></a><span class="st">                           </span>female_hh <span class="op">+</span><span class="st"> </span>indigenous <span class="op">+</span><span class="st"> </span>hhsize <span class="op">+</span><span class="st"> </span>dirtfloor <span class="op">+</span><span class="st"> </span></span>
+<span id="cb12-12"><a href="instrumental-variables.html#cb12-12"></a><span class="st">                           </span>bathroom <span class="op">+</span><span class="st"> </span>land <span class="op">+</span><span class="st"> </span>hospital_distance ,</span>
+<span id="cb12-13"><a href="instrumental-variables.html#cb12-13"></a>                           <span class="dt">clusters =</span> locality_identifier,</span>
+<span id="cb12-14"><a href="instrumental-variables.html#cb12-14"></a>                           <span class="dt">data =</span> df <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(round <span class="op">==</span><span class="st"> </span><span class="dv">1</span>))</span>
+<span id="cb12-15"><a href="instrumental-variables.html#cb12-15"></a><span class="kw">htmlreg</span>(<span class="kw">list</span>(m_cace, m_cace_wcov), <span class="dt">doctype =</span> <span class="ot">FALSE</span>,</span>
+<span id="cb12-16"><a href="instrumental-variables.html#cb12-16"></a>        <span class="dt">custom.coef.map =</span> <span class="kw">list</span>(<span class="st">`</span><span class="dt">enrolled_rp</span><span class="st">`</span> =<span class="st"> &quot;Enrollment&quot;</span>,</span>
+<span id="cb12-17"><a href="instrumental-variables.html#cb12-17"></a>                               <span class="st">`</span><span class="dt">(Intercept)</span><span class="st">`</span> =<span class="st"> &quot;Intercept&quot;</span>),</span>
+<span id="cb12-18"><a href="instrumental-variables.html#cb12-18"></a>        <span class="dt">custom.model.names =</span> <span class="kw">c</span>(<span class="st">&quot;No Covariate Adjustment&quot;</span>, <span class="st">&quot;With Covariate Adjustment&quot;</span>),</span>
+<span id="cb12-19"><a href="instrumental-variables.html#cb12-19"></a>        <span class="dt">caption =</span> <span class="st">&quot;Evaluating HISP: Randomized Promotion as an Instrumental Variable&quot;</span>)</span></code></pre></div>
+<table class="texreg" style="margin: 10px auto;border-collapse: collapse;border-spacing: 0px;caption-side: bottom;color: #000000;border-top: 2px solid #000000;">
+<caption>
+Evaluating HISP: Randomized Promotion as an Instrumental Variable
+</caption>
+<thead>
+<tr>
+<th style="padding-left: 5px;padding-right: 5px;">
+ 
+</th>
+<th style="padding-left: 5px;padding-right: 5px;">
+No Covariate Adjustment
+</th>
+<th style="padding-left: 5px;padding-right: 5px;">
+With Covariate Adjustment
+</th>
+</tr>
+</thead>
+<tbody>
+<tr style="border-top: 1px solid #000000;">
+<td style="padding-left: 5px;padding-right: 5px;">
+Enrollment
+</td>
+<td style="padding-left: 5px;padding-right: 5px;">
+-9.50<sup>*</sup>
+</td>
+<td style="padding-left: 5px;padding-right: 5px;">
+-9.74<sup>*</sup>
+</td>
+</tr>
+<tr>
+<td style="padding-left: 5px;padding-right: 5px;">
+ 
+</td>
+<td style="padding-left: 5px;padding-right: 5px;">
+[-11.76; -7.24]
+</td>
+<td style="padding-left: 5px;padding-right: 5px;">
+[-11.63; -7.86]
+</td>
+</tr>
+<tr>
+<td style="padding-left: 5px;padding-right: 5px;">
+Intercept
+</td>
+<td style="padding-left: 5px;padding-right: 5px;">
+19.65<sup>*</sup>
+</td>
+<td style="padding-left: 5px;padding-right: 5px;">
+29.17<sup>*</sup>
+</td>
+</tr>
+<tr>
+<td style="padding-left: 5px;padding-right: 5px;">
+ 
+</td>
+<td style="padding-left: 5px;padding-right: 5px;">
+[ 18.70; 20.59]
+</td>
+<td style="padding-left: 5px;padding-right: 5px;">
+[ 27.49; 30.85]
+</td>
+</tr>
+<tr style="border-top: 1px solid #000000;">
+<td style="padding-left: 5px;padding-right: 5px;">
+R<sup>2</sup>
+</td>
+<td style="padding-left: 5px;padding-right: 5px;">
+0.22
+</td>
+<td style="padding-left: 5px;padding-right: 5px;">
+0.41
+</td>
+</tr>
+<tr>
+<td style="padding-left: 5px;padding-right: 5px;">
+Adj. R<sup>2</sup>
+</td>
+<td style="padding-left: 5px;padding-right: 5px;">
+0.22
+</td>
+<td style="padding-left: 5px;padding-right: 5px;">
+0.40
+</td>
+</tr>
+<tr>
+<td style="padding-left: 5px;padding-right: 5px;">
+Num. obs.
+</td>
+<td style="padding-left: 5px;padding-right: 5px;">
+9914
+</td>
+<td style="padding-left: 5px;padding-right: 5px;">
+9914
+</td>
+</tr>
+<tr>
+<td style="padding-left: 5px;padding-right: 5px;">
+RMSE
+</td>
+<td style="padding-left: 5px;padding-right: 5px;">
+10.49
+</td>
+<td style="padding-left: 5px;padding-right: 5px;">
+9.17
+</td>
+</tr>
+<tr style="border-bottom: 2px solid #000000;">
+<td style="padding-left: 5px;padding-right: 5px;">
+N Clusters
+</td>
+<td style="padding-left: 5px;padding-right: 5px;">
+200
+</td>
+<td style="padding-left: 5px;padding-right: 5px;">
+200
+</td>
+</tr>
+</tbody>
+<tfoot>
+<tr>
+<td style="font-size: 0.8em;" colspan="3">
+<sup>*</sup> Null hypothesis value outside the confidence interval.
+</td>
+</tr>
+</tfoot>
+</table>
+<p><strong>What are the key conditions required to accept the results from the randomized promotion evaluation of HISP?</strong></p>
+<p>There are three basic assumptions required to accept the result from the randomized promotion evaluation of HISP. First, the promoted and nonpromoted villages have the same characteristics before the HISP. This assumption holds because of the randomized assignment of promotion at the village level, and can be verified by comparing the baseline data from both groups. Second, the promotion is effective in encouraging households to enroll in the HISP. This assumption can be verified if the promoted villages have substantially higher enrollments in HISP than nonpromoted villages. Third, we assume the promotion itself does not directly affect health expenditures. This assumption usually can not be verified but is informed by theory and experience.</p>
+<p><strong>Based on these results, should HISP be scaled up nationally?</strong></p>
+<p>Based strictly on the estimate from the multivariate linear regression, the HISP should not be scaled up nationally because it decreased health expenditures by 9.74 USD, which is less than the government-determined threshold level of 10USD. However, the 9.74USD estimate is very close to 10 USD. In statistical terms, it is not statistically different from 10 USD. Therefore, you might still argue that the HISP should be expanded nationally.</p>
+
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="randomised-assignment.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="regression-discontinuity-designs.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["iep_solutions.pdf", "iep_solutions.epub"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

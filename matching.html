@@ -593,361 +593,12 @@ Figure 7.1: Distribution of Propensity Score by Enrollment Status
 <!-- ```{r} -->
 <!-- summary(psm_ur) -->
 <!-- ``` -->
-<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="matching.html#cb29-1"></a><span class="kw">kable</span>(<span class="kw">summary</span>(psm_ur)<span class="op">$</span>sum.matched,</span>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="matching.html#cb29-1"></a><span class="kw">kable</span>(<span class="kw">summary</span>(psm_ur)<span class="op">$</span>sum.all,</span>
 <span id="cb29-2"><a href="matching.html#cb29-2"></a>      <span class="dt">caption =</span> <span class="st">&quot;Balance Before Matching&quot;</span>) <span class="op">%&gt;%</span></span>
 <span id="cb29-3"><a href="matching.html#cb29-3"></a><span class="st">  </span><span class="kw">kable_styling</span>()</span></code></pre></div>
 <table class="table" style="margin-left: auto; margin-right: auto;">
 <caption>
-<span id="tab:balance-tab-matched">Table 7.1: </span>Balance Before Matching
-</caption>
-<thead>
-<tr>
-<th style="text-align:left;">
-</th>
-<th style="text-align:right;">
-Means Treated
-</th>
-<th style="text-align:right;">
-Means Control
-</th>
-<th style="text-align:right;">
-SD Control
-</th>
-<th style="text-align:right;">
-Mean Diff
-</th>
-<th style="text-align:right;">
-eQQ Med
-</th>
-<th style="text-align:right;">
-eQQ Mean
-</th>
-<th style="text-align:right;">
-eQQ Max
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left;">
-distance
-</td>
-<td style="text-align:right;">
-0.3694119
-</td>
-<td style="text-align:right;">
-0.3687162
-</td>
-<td style="text-align:right;">
-0.1289918
-</td>
-<td style="text-align:right;">
-0.0006957
-</td>
-<td style="text-align:right;">
-0.0001013
-</td>
-<td style="text-align:right;">
-0.0007221
-</td>
-<td style="text-align:right;">
-0.0167152
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-age_hh_0
-</td>
-<td style="text-align:right;">
-41.6565796
-</td>
-<td style="text-align:right;">
-41.7867746
-</td>
-<td style="text-align:right;">
-13.1422452
-</td>
-<td style="text-align:right;">
--0.1301951
-</td>
-<td style="text-align:right;">
-1.0000000
-</td>
-<td style="text-align:right;">
-0.8650129
-</td>
-<td style="text-align:right;">
-5.0000000
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-educ_hh_0
-</td>
-<td style="text-align:right;">
-2.9711803
-</td>
-<td style="text-align:right;">
-2.9549320
-</td>
-<td style="text-align:right;">
-2.7497469
-</td>
-<td style="text-align:right;">
-0.0162484
-</td>
-<td style="text-align:right;">
-0.0000000
-</td>
-<td style="text-align:right;">
-0.1437787
-</td>
-<td style="text-align:right;">
-4.0000000
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-age_sp_0
-</td>
-<td style="text-align:right;">
-36.8363698
-</td>
-<td style="text-align:right;">
-36.9915655
-</td>
-<td style="text-align:right;">
-11.0374258
-</td>
-<td style="text-align:right;">
--0.1551957
-</td>
-<td style="text-align:right;">
-1.0000000
-</td>
-<td style="text-align:right;">
-0.7699055
-</td>
-<td style="text-align:right;">
-8.0000000
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-educ_sp_0
-</td>
-<td style="text-align:right;">
-2.7032726
-</td>
-<td style="text-align:right;">
-2.7128880
-</td>
-<td style="text-align:right;">
-2.6196748
-</td>
-<td style="text-align:right;">
--0.0096154
-</td>
-<td style="text-align:right;">
-0.0000000
-</td>
-<td style="text-align:right;">
-0.1378205
-</td>
-<td style="text-align:right;">
-4.0000000
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-female_hh_0
-</td>
-<td style="text-align:right;">
-0.0732119
-</td>
-<td style="text-align:right;">
-0.0732119
-</td>
-<td style="text-align:right;">
-0.2605279
-</td>
-<td style="text-align:right;">
-0.0000000
-</td>
-<td style="text-align:right;">
-0.0000000
-</td>
-<td style="text-align:right;">
-0.0000000
-</td>
-<td style="text-align:right;">
-0.0000000
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-indigenous_0
-</td>
-<td style="text-align:right;">
-0.4291498
-</td>
-<td style="text-align:right;">
-0.4234143
-</td>
-<td style="text-align:right;">
-0.4941832
-</td>
-<td style="text-align:right;">
-0.0057355
-</td>
-<td style="text-align:right;">
-0.0000000
-</td>
-<td style="text-align:right;">
-0.0057355
-</td>
-<td style="text-align:right;">
-1.0000000
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-hhsize_0
-</td>
-<td style="text-align:right;">
-5.7699055
-</td>
-<td style="text-align:right;">
-5.7884615
-</td>
-<td style="text-align:right;">
-2.1411833
-</td>
-<td style="text-align:right;">
--0.0185560
-</td>
-<td style="text-align:right;">
-0.0000000
-</td>
-<td style="text-align:right;">
-0.1373144
-</td>
-<td style="text-align:right;">
-1.0000000
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-dirtfloor_0
-</td>
-<td style="text-align:right;">
-0.7216599
-</td>
-<td style="text-align:right;">
-0.7253711
-</td>
-<td style="text-align:right;">
-0.4464024
-</td>
-<td style="text-align:right;">
--0.0037112
-</td>
-<td style="text-align:right;">
-0.0000000
-</td>
-<td style="text-align:right;">
-0.0037112
-</td>
-<td style="text-align:right;">
-1.0000000
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-bathroom_0
-</td>
-<td style="text-align:right;">
-0.5735493
-</td>
-<td style="text-align:right;">
-0.5732119
-</td>
-<td style="text-align:right;">
-0.4946944
-</td>
-<td style="text-align:right;">
-0.0003374
-</td>
-<td style="text-align:right;">
-0.0000000
-</td>
-<td style="text-align:right;">
-0.0003374
-</td>
-<td style="text-align:right;">
-1.0000000
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-land_0
-</td>
-<td style="text-align:right;">
-1.6771255
-</td>
-<td style="text-align:right;">
-1.7010796
-</td>
-<td style="text-align:right;">
-2.6217989
-</td>
-<td style="text-align:right;">
--0.0239541
-</td>
-<td style="text-align:right;">
-0.0000000
-</td>
-<td style="text-align:right;">
-0.1103239
-</td>
-<td style="text-align:right;">
-3.0000000
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-hospital_distance_0
-</td>
-<td style="text-align:right;">
-109.2043122
-</td>
-<td style="text-align:right;">
-108.5100383
-</td>
-<td style="text-align:right;">
-41.8790212
-</td>
-<td style="text-align:right;">
-0.6942738
-</td>
-<td style="text-align:right;">
-1.2450775
-</td>
-<td style="text-align:right;">
-1.6190618
-</td>
-<td style="text-align:right;">
-7.5290520
-</td>
-</tr>
-</tbody>
-</table>
-<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="matching.html#cb30-1"></a><span class="kw">kable</span>(<span class="kw">summary</span>(psm_ur)<span class="op">$</span>sum.all,</span>
-<span id="cb30-2"><a href="matching.html#cb30-2"></a>      <span class="dt">caption =</span> <span class="st">&quot;Balance After Matching&quot;</span>) <span class="op">%&gt;%</span></span>
-<span id="cb30-3"><a href="matching.html#cb30-3"></a><span class="st">  </span><span class="kw">kable_styling</span>()</span></code></pre></div>
-<table class="table" style="margin-left: auto; margin-right: auto;">
-<caption>
-<span id="tab:balance-tab-all">Table 7.2: </span>Balance After Matching
+<span id="tab:balance-tab-all">Table 7.1: </span>Balance Before Matching
 </caption>
 <thead>
 <tr>
@@ -1291,6 +942,355 @@ hospital_distance_0
 </tr>
 </tbody>
 </table>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="matching.html#cb30-1"></a><span class="kw">kable</span>(<span class="kw">summary</span>(psm_ur)<span class="op">$</span>sum.matched,</span>
+<span id="cb30-2"><a href="matching.html#cb30-2"></a>      <span class="dt">caption =</span> <span class="st">&quot;Balance After Matching&quot;</span>) <span class="op">%&gt;%</span></span>
+<span id="cb30-3"><a href="matching.html#cb30-3"></a><span class="st">  </span><span class="kw">kable_styling</span>()</span></code></pre></div>
+<table class="table" style="margin-left: auto; margin-right: auto;">
+<caption>
+<span id="tab:balance-tab-matched">Table 7.2: </span>Balance After Matching
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;">
+</th>
+<th style="text-align:right;">
+Means Treated
+</th>
+<th style="text-align:right;">
+Means Control
+</th>
+<th style="text-align:right;">
+SD Control
+</th>
+<th style="text-align:right;">
+Mean Diff
+</th>
+<th style="text-align:right;">
+eQQ Med
+</th>
+<th style="text-align:right;">
+eQQ Mean
+</th>
+<th style="text-align:right;">
+eQQ Max
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+distance
+</td>
+<td style="text-align:right;">
+0.3694119
+</td>
+<td style="text-align:right;">
+0.3687162
+</td>
+<td style="text-align:right;">
+0.1289918
+</td>
+<td style="text-align:right;">
+0.0006957
+</td>
+<td style="text-align:right;">
+0.0001013
+</td>
+<td style="text-align:right;">
+0.0007221
+</td>
+<td style="text-align:right;">
+0.0167152
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+age_hh_0
+</td>
+<td style="text-align:right;">
+41.6565796
+</td>
+<td style="text-align:right;">
+41.7867746
+</td>
+<td style="text-align:right;">
+13.1422452
+</td>
+<td style="text-align:right;">
+-0.1301951
+</td>
+<td style="text-align:right;">
+1.0000000
+</td>
+<td style="text-align:right;">
+0.8650129
+</td>
+<td style="text-align:right;">
+5.0000000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+educ_hh_0
+</td>
+<td style="text-align:right;">
+2.9711803
+</td>
+<td style="text-align:right;">
+2.9549320
+</td>
+<td style="text-align:right;">
+2.7497469
+</td>
+<td style="text-align:right;">
+0.0162484
+</td>
+<td style="text-align:right;">
+0.0000000
+</td>
+<td style="text-align:right;">
+0.1437787
+</td>
+<td style="text-align:right;">
+4.0000000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+age_sp_0
+</td>
+<td style="text-align:right;">
+36.8363698
+</td>
+<td style="text-align:right;">
+36.9915655
+</td>
+<td style="text-align:right;">
+11.0374258
+</td>
+<td style="text-align:right;">
+-0.1551957
+</td>
+<td style="text-align:right;">
+1.0000000
+</td>
+<td style="text-align:right;">
+0.7699055
+</td>
+<td style="text-align:right;">
+8.0000000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+educ_sp_0
+</td>
+<td style="text-align:right;">
+2.7032726
+</td>
+<td style="text-align:right;">
+2.7128880
+</td>
+<td style="text-align:right;">
+2.6196748
+</td>
+<td style="text-align:right;">
+-0.0096154
+</td>
+<td style="text-align:right;">
+0.0000000
+</td>
+<td style="text-align:right;">
+0.1378205
+</td>
+<td style="text-align:right;">
+4.0000000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+female_hh_0
+</td>
+<td style="text-align:right;">
+0.0732119
+</td>
+<td style="text-align:right;">
+0.0732119
+</td>
+<td style="text-align:right;">
+0.2605279
+</td>
+<td style="text-align:right;">
+0.0000000
+</td>
+<td style="text-align:right;">
+0.0000000
+</td>
+<td style="text-align:right;">
+0.0000000
+</td>
+<td style="text-align:right;">
+0.0000000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+indigenous_0
+</td>
+<td style="text-align:right;">
+0.4291498
+</td>
+<td style="text-align:right;">
+0.4234143
+</td>
+<td style="text-align:right;">
+0.4941832
+</td>
+<td style="text-align:right;">
+0.0057355
+</td>
+<td style="text-align:right;">
+0.0000000
+</td>
+<td style="text-align:right;">
+0.0057355
+</td>
+<td style="text-align:right;">
+1.0000000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+hhsize_0
+</td>
+<td style="text-align:right;">
+5.7699055
+</td>
+<td style="text-align:right;">
+5.7884615
+</td>
+<td style="text-align:right;">
+2.1411833
+</td>
+<td style="text-align:right;">
+-0.0185560
+</td>
+<td style="text-align:right;">
+0.0000000
+</td>
+<td style="text-align:right;">
+0.1373144
+</td>
+<td style="text-align:right;">
+1.0000000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+dirtfloor_0
+</td>
+<td style="text-align:right;">
+0.7216599
+</td>
+<td style="text-align:right;">
+0.7253711
+</td>
+<td style="text-align:right;">
+0.4464024
+</td>
+<td style="text-align:right;">
+-0.0037112
+</td>
+<td style="text-align:right;">
+0.0000000
+</td>
+<td style="text-align:right;">
+0.0037112
+</td>
+<td style="text-align:right;">
+1.0000000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+bathroom_0
+</td>
+<td style="text-align:right;">
+0.5735493
+</td>
+<td style="text-align:right;">
+0.5732119
+</td>
+<td style="text-align:right;">
+0.4946944
+</td>
+<td style="text-align:right;">
+0.0003374
+</td>
+<td style="text-align:right;">
+0.0000000
+</td>
+<td style="text-align:right;">
+0.0003374
+</td>
+<td style="text-align:right;">
+1.0000000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+land_0
+</td>
+<td style="text-align:right;">
+1.6771255
+</td>
+<td style="text-align:right;">
+1.7010796
+</td>
+<td style="text-align:right;">
+2.6217989
+</td>
+<td style="text-align:right;">
+-0.0239541
+</td>
+<td style="text-align:right;">
+0.0000000
+</td>
+<td style="text-align:right;">
+0.1103239
+</td>
+<td style="text-align:right;">
+3.0000000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+hospital_distance_0
+</td>
+<td style="text-align:right;">
+109.2043122
+</td>
+<td style="text-align:right;">
+108.5100383
+</td>
+<td style="text-align:right;">
+41.8790212
+</td>
+<td style="text-align:right;">
+0.6942738
+</td>
+<td style="text-align:right;">
+1.2450775
+</td>
+<td style="text-align:right;">
+1.6190618
+</td>
+<td style="text-align:right;">
+7.5290520
+</td>
+</tr>
+</tbody>
+</table>
 <p><strong>Using the matched sample, what is the estimated effect of the program?</strong></p>
 <p>To obtain the estimated impact using the matching method, we first need to extract the matched data set.</p>
 <div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="matching.html#cb31-1"></a>match_df_r &lt;-<span class="st"> </span><span class="kw">match.data</span>(psm_r)</span>
@@ -1334,7 +1334,7 @@ Full Set
 (Intercept)
 </td>
 <td style="padding-left: 5px;padding-right: 5px;">
-19.65<sup>*</sup>
+19.73<sup>*</sup>
 </td>
 <td style="padding-left: 5px;padding-right: 5px;">
 17.84<sup>*</sup>
@@ -1345,7 +1345,7 @@ Full Set
  
 </td>
 <td style="padding-left: 5px;padding-right: 5px;">
-[ 19.04; 20.25]
+[ 19.10; 20.36]
 </td>
 <td style="padding-left: 5px;padding-right: 5px;">
 [ 17.27; 18.41]
@@ -1356,7 +1356,7 @@ Full Set
 enrolled
 </td>
 <td style="padding-left: 5px;padding-right: 5px;">
--11.81<sup>*</sup>
+-11.89<sup>*</sup>
 </td>
 <td style="padding-left: 5px;padding-right: 5px;">
 -10.00<sup>*</sup>
@@ -1367,7 +1367,7 @@ enrolled
  
 </td>
 <td style="padding-left: 5px;padding-right: 5px;">
-[-12.56; -11.05]
+[-12.65; -11.14]
 </td>
 <td style="padding-left: 5px;padding-right: 5px;">
 [-10.73; -9.27]
@@ -1411,7 +1411,7 @@ Num. obs.
 RMSE
 </td>
 <td style="padding-left: 5px;padding-right: 5px;">
-9.17
+9.27
 </td>
 <td style="padding-left: 5px;padding-right: 5px;">
 8.03
@@ -1488,7 +1488,7 @@ Full Set
 Enrollment
 </td>
 <td style="padding-left: 5px;padding-right: 5px;">
--2.69<sup>*</sup>
+-2.75<sup>*</sup>
 </td>
 <td style="padding-left: 5px;padding-right: 5px;">
 -0.54<sup>*</sup>
@@ -1499,7 +1499,7 @@ Enrollment
  
 </td>
 <td style="padding-left: 5px;padding-right: 5px;">
-[-3.23; -2.15]
+[-3.27; -2.22]
 </td>
 <td style="padding-left: 5px;padding-right: 5px;">
 [ -1.01; -0.07]
@@ -1510,7 +1510,7 @@ Enrollment
 Round
 </td>
 <td style="padding-left: 5px;padding-right: 5px;">
-2.47<sup>*</sup>
+2.50<sup>*</sup>
 </td>
 <td style="padding-left: 5px;padding-right: 5px;">
 2.81<sup>*</sup>
@@ -1521,7 +1521,7 @@ Round
  
 </td>
 <td style="padding-left: 5px;padding-right: 5px;">
-[ 1.97; 2.96]
+[ 1.96; 3.03]
 </td>
 <td style="padding-left: 5px;padding-right: 5px;">
 [ 2.35; 3.26]
@@ -1532,7 +1532,7 @@ Round
 Enrollment X Round
 </td>
 <td style="padding-left: 5px;padding-right: 5px;">
--9.12<sup>*</sup>
+-9.15<sup>*</sup>
 </td>
 <td style="padding-left: 5px;padding-right: 5px;">
 -9.46<sup>*</sup>
@@ -1543,7 +1543,7 @@ Enrollment X Round
  
 </td>
 <td style="padding-left: 5px;padding-right: 5px;">
-[-9.73; -8.50]
+[-9.76; -8.53]
 </td>
 <td style="padding-left: 5px;padding-right: 5px;">
 [-10.05; -8.87]
@@ -1554,7 +1554,7 @@ Enrollment X Round
 R<sup>2</sup>
 </td>
 <td style="padding-left: 5px;padding-right: 5px;">
-0.27
+0.26
 </td>
 <td style="padding-left: 5px;padding-right: 5px;">
 0.24
@@ -1565,7 +1565,7 @@ R<sup>2</sup>
 Adj. R<sup>2</sup>
 </td>
 <td style="padding-left: 5px;padding-right: 5px;">
-0.27
+0.26
 </td>
 <td style="padding-left: 5px;padding-right: 5px;">
 0.24
@@ -1587,7 +1587,7 @@ Num. obs.
 RMSE
 </td>
 <td style="padding-left: 5px;padding-right: 5px;">
-7.33
+7.41
 </td>
 <td style="padding-left: 5px;padding-right: 5px;">
 6.53

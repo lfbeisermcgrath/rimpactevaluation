@@ -216,7 +216,7 @@ poverty index.</p>
 <span id="cb14-3"><a href="regression-discontinuity-designs.html#cb14-3"></a><span class="st">  </span><span class="kw">geom_density</span>() <span class="op">+</span></span>
 <span id="cb14-4"><a href="regression-discontinuity-designs.html#cb14-4"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;Poverty Index&quot;</span>)</span></code></pre></div>
 <p><img src="iep_solutions_files/figure-html/density-1.png" width="672" /></p>
-<p>We can also conduct a McCreary density test, to examine this more formally.</p>
+<p>We can also conduct a McCrary density test, to examine this more formally.</p>
 <div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="regression-discontinuity-designs.html#cb15-1"></a>test_density &lt;-<span class="st"> </span><span class="kw">rdplotdensity</span>(<span class="dt">rdd =</span> <span class="kw">rddensity</span>(df_treat<span class="op">$</span>poverty_index, <span class="dt">c =</span> <span class="dv">58</span>), </span>
 <span id="cb15-2"><a href="regression-discontinuity-designs.html#cb15-2"></a>                              <span class="dt">X =</span> df_treat<span class="op">$</span>poverty_index, </span>
 <span id="cb15-3"><a href="regression-discontinuity-designs.html#cb15-3"></a>                              <span class="dt">type =</span> <span class="st">&quot;both&quot;</span>)</span></code></pre></div>
